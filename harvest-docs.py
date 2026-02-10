@@ -38,6 +38,9 @@ CATEGORY_TAG_RE = re.compile(r"^@category\s+(?P<cat>.+?)\s*$")
 INTERNAL_TAG_RE = re.compile(r"@internal\b")
 HIDDEN_TAG_RE = re.compile(r"@hidden\b")
 
+# Regex to detect doc-id HTML comment lines inside JSDoc blocks
+DOC_ID_TAG_RE = re.compile(r"<!--\s*doc-id:\s*(?P<id>[^>]+?)\s*-->")
+
 # Regular expressions - TypeScript syntax
 EXPORT_CONTAINER_RE = re.compile(r"^\s*export\s+(?P<kind>interface|class|enum)\s+(?P<name>[A-Za-z_]\w*)\b")
 EXPORT_NAMED_RE = re.compile(r"^\s*export\s+(?:interface|class|enum|type)\s+(?P<name>[A-Za-z_]\w*)\b")
@@ -178,6 +181,73 @@ def normalize_doc_block(block: str) -> list[str]:
         lines.pop()
     
     return lines
+
+
+# ========================================
+# Doc-id helpers for JSDoc blocks
+# ========================================
+
+def _update_jsdoc_doc_id_block(raw_block: str, doc_id: str) -> tuple[str, bool]:
+    """Ensure a JSDoc block contains a leading `<!-- doc-id: ... -->` line.
+
+    - If a doc-id comment already exists and matches, no change.
+    - If it exists but differs, update it.
+    - If multiple exist, keep only the first (updated) and remove the rest.
+    - If it doesn't exist, insert it immediately after the opening `/**` line.
+
+    Returns: (new_block, changed)
+    """
+    lines = raw_block.splitlines(keepends=False)
+    if not lines:
+        return raw_block, False
+
+    # Determine indentation from the opening line `/**`
+    m_open = re.match(r"^(\s*)/\*\*\s*$", lines[0])
+    indent = m_open.group(1) if m_open else re.match(r"^(\s*)", lines[0]).group(1)
+
+    # Locate existing doc-id lines.
+    idxs: list[int] = []
+    existing_id: str | None = None
+    for i, ln in enumerate(lines):
+        m = DOC_ID_TAG_RE.search(ln)
+        if m:
+            idxs.append(i)
+            if existing_id is None:
+                existing_id = m.group("id").strip()
+
+    # Prefer the same `*` prefix used by the rest of the block so alignment matches.
+    # Example: "  * " vs " * " depending on nesting/indentation.
+    star_prefix = f"{indent} * "
+    for probe in lines[1:6]:
+        m_probe = re.match(r"^(\s*\*\s*)", probe)
+        if m_probe:
+            star_prefix = m_probe.group(1)
+            break
+
+    desired_line = f"{star_prefix}<!-- doc-id: {doc_id} -->".rstrip()
+
+    if idxs:
+        # Update the first occurrence with the computed star_prefix.
+        first_i = idxs[0]
+        lines[first_i] = desired_line
+
+        # Remove additional occurrences (from bottom-up to keep indices valid)
+        for j in reversed(idxs[1:]):
+            del lines[j]
+
+        changed = (existing_id != doc_id) or (len(idxs) > 1)
+        return "\n".join(lines) + ("\n" if raw_block.endswith("\n") else ""), changed
+
+    # Insert right after opening line.
+    insert_at = 1
+    lines.insert(insert_at, desired_line)
+    return "\n".join(lines) + ("\n" if raw_block.endswith("\n") else ""), True
+
+
+def _should_skip_doc_id_insertion(norm_lines: list[str]) -> bool:
+    """Return True if the doc-block has @internal or @hidden flags."""
+    _desc, _examples, _cats, flags = extract_description_examples_categories(norm_lines)
+    return ("internal" in flags) or ("hidden" in flags)
 
 
 # ========================================
@@ -518,6 +588,102 @@ def _infer_doc_id(signature: str, container: str | None, container_kind: str | N
 # File scanning and seeding
 # ========================================
 
+
+def insert_doc_ids(limit: int | None = None) -> None:
+    """Insert/update `<!-- doc-id: ... -->` at the top of each harvestable JSDoc block.
+
+    This edits TypeScript source files in-place under TS_ROOT (skipping `legacy`).
+    It will NOT insert doc-ids into blocks marked @internal or @hidden.
+    """
+    files_scanned = 0
+    blocks_seen = 0
+    blocks_updated = 0
+
+    for ts_file in TS_ROOT.rglob("*.ts"):
+        if "legacy" in ts_file.parts:
+            continue
+
+        files_scanned += 1
+        text = ts_file.read_text(encoding="utf-8")
+        lines_src = text.splitlines()
+
+        # Precompute containers by scanning lines (same approach as seeding)
+        containers_by_line: list[tuple[int, str, str]] = []
+        for idx, line in enumerate(lines_src):
+            m = EXPORT_CONTAINER_RE.match(line)
+            if m:
+                containers_by_line.append((idx, m.group("name"), m.group("kind")))
+                continue
+            m = EXPORT_CONST_OBJECT_RE.match(line)
+            if m:
+                containers_by_line.append((idx, m.group("name"), "const"))
+
+        def container_for_signature(sig_line_no: int | None) -> tuple[str | None, str | None]:
+            if sig_line_no is None:
+                return None, None
+            c_name, c_kind = None, None
+            for li, name, kind in containers_by_line:
+                if li <= sig_line_no:
+                    c_name, c_kind = name, kind
+                else:
+                    break
+            return c_name, c_kind
+
+        # Build an edited version of the file by replacing blocks where needed.
+        out_parts: list[str] = []
+        last_end = 0
+        changed_file = False
+
+        for m in re.finditer(r"/\*\*(.*?)\*/", text, re.DOTALL):
+            blocks_seen += 1
+            raw_block = m.group(0)
+            block_inner = m.group(1)
+
+            signature, sig_line_no = _find_next_signature(text, m.end())
+            if not signature:
+                continue
+
+            container_name, container_kind = container_for_signature(sig_line_no)
+            doc_id = _infer_doc_id(signature, container_name, container_kind)
+            if not doc_id:
+                continue
+
+            # Skip internal/hidden doc blocks.
+            norm_lines = normalize_doc_block(block_inner)
+            if _should_skip_doc_id_insertion(norm_lines):
+                continue
+
+            updated_block, did_change = _update_jsdoc_doc_id_block(raw_block, doc_id)
+            if not did_change:
+                continue
+
+            # Emit text up to block, then updated block
+            out_parts.append(text[last_end:m.start()])
+            out_parts.append(updated_block)
+            last_end = m.end()
+            changed_file = True
+            blocks_updated += 1
+
+            if limit is not None and blocks_updated >= limit:
+                break
+
+        if limit is not None and blocks_updated >= limit:
+            # If we bailed early on block updates, still complete this file's output
+            out_parts.append(text[last_end:])
+            new_text = "".join(out_parts) if changed_file else text
+            if changed_file and new_text != text:
+                ts_file.write_text(new_text, encoding="utf-8")
+            break
+
+        if changed_file:
+            out_parts.append(text[last_end:])
+            new_text = "".join(out_parts)
+            if new_text != text:
+                ts_file.write_text(new_text, encoding="utf-8")
+
+    print(f"[insert-doc-ids] summary: files_scanned={files_scanned}, blocks_seen={blocks_seen}, blocks_updated={blocks_updated}")
+
+
 def seed_docs(out_dir: Path, limit: int | None, prune_orphans: bool = False):
     """
     Scan TypeScript files and generate YAML documentation database.
@@ -787,6 +953,11 @@ def main():
         help="Seed a YAML docs database to --out-dir (default: docs-db)",
     )
     parser.add_argument(
+        "--insert-doc-ids",
+        action="store_true",
+        help="Insert/update <!-- doc-id: ... --> at the top of each harvestable JSDoc block (edits TS sources in-place)",
+    )
+    parser.add_argument(
         "--out-dir",
         default="docs-db",
         help="Output directory for --seed (default: docs-db)",
@@ -830,6 +1001,10 @@ def main():
             dump_extracted_file(path, max_blocks=args.max_blocks)
         else:
             dump_file(path, max_blocks=args.max_blocks)
+        return
+
+    if args.insert_doc_ids:
+        insert_doc_ids(limit=args.limit)
         return
     
     # Handle seed command
