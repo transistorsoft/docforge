@@ -1,4 +1,0 @@
-id: Sensors.motion_hardware
-source_file: background-geolocation-types/src/core/data/Sensors.ts
-signature: 'motion_hardware?: boolean;'
-description: __[iOS only]__ `true` when the device has an __M7__ motion co-processor (iPhone 5S and up).

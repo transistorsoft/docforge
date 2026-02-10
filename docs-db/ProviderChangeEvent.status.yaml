@@ -1,4 +1,0 @@
-id: ProviderChangeEvent.status
-source_file: background-geolocation-types/src/core/events/ProviderChangeEvent.ts
-signature: 'status: number;'
-description: Authorization status for location-services (platform numeric).

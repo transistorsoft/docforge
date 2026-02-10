@@ -1,6 +1,0 @@
-id: Location.uuid
-source_file: background-geolocation-types/src/core/data/Location.ts
-signature: 'uuid: string;'
-description: |-
-  Universally Unique Identifier.  You can use this to match locations recorded at your server with those in the logs.
-  It can also be used to ensure if the plugin has ever posted the same location *twice*.

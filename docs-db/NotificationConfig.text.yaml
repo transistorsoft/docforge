@@ -1,7 +1,0 @@
-id: NotificationConfig.text
-source_file: background-geolocation-types/src/core/config/NotificationConfig.ts
-signature: 'text?: string;'
-description: |-
-  Configure the *text* of the persistent notification in the Notification Bar.
-
-  Defaults to *"Location service activated"*.  Android requires a persistent notification for foreground-services.  This will configure the **text** of that notification.

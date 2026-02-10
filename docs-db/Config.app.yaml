@@ -1,4 +1,0 @@
-id: Config.app
-source_file: background-geolocation-types/src/core/config/Config.ts
-signature: 'app?: AppConfig;'
-description: App configuration.

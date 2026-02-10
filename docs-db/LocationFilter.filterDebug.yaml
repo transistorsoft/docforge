@@ -1,9 +1,0 @@
-id: LocationFilter.filterDebug
-source_file: background-geolocation-types/src/core/config/LocationFilter.ts
-signature: 'filterDebug?: boolean;'
-description: |-
-  Enables verbose debug logging for the filtering engine.
-
-  When `true`, the SDK logs detailed decisions for each incoming sample,
-  including whether it was **ACCEPTED**, **REJECTED**, or **IGNORED** by the
-  filtering pipeline.

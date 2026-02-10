@@ -1,4 +1,0 @@
-id: ConnectivityChangeEvent.connected
-source_file: background-geolocation-types/src/core/events/ConnectivityChangeEvent.ts
-signature: 'connected: boolean;'
-description: True when the device has network connectivity.

@@ -1,9 +1,0 @@
-id: LocationFilter.kalmanDebug
-source_file: background-geolocation-types/src/core/config/LocationFilter.ts
-signature: 'kalmanDebug?: boolean;'
-description: |-
-  Enables verbose Kalman debug output in logs.
-
-  When `true`, the SDK logs additional diagnostic data about the Kalman
-  filter’s internal state (for example, variance and innovation) for
-  each incoming sample.

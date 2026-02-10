@@ -1,6 +1,0 @@
-id: HttpEvent
-source_file: background-geolocation-types/src/core/events/HttpEvent.ts
-signature: export interface HttpEvent {
-categories:
-- Events
-description: Emitted by {@link BackgroundGeolocation.onHttp}.

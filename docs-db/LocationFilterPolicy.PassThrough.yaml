@@ -1,4 +1,0 @@
-id: LocationFilterPolicy.PassThrough
-source_file: background-geolocation-types/src/enums/LocationFilterPolicy.ts
-signature: 'PassThrough: 0,'
-description: No filtering — accept all samples. Useful for debugging.

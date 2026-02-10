@@ -1,4 +1,0 @@
-id: ProviderChangeEvent.network
-source_file: background-geolocation-types/src/core/events/ProviderChangeEvent.ts
-signature: 'network: boolean;'
-description: True if network geolocation provider is available.

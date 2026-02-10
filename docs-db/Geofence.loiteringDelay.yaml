@@ -1,4 +1,0 @@
-id: Geofence.loiteringDelay
-source_file: background-geolocation-types/src/core/data/Geofence.ts
-signature: 'loiteringDelay?: number;'
-description: Minimum time in *milliseconds* the device must "loiter" within this geofence before {@link notifyOnDwell} event fires.

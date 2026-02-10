@@ -1,4 +1,0 @@
-id: DeviceSettingsRequest.manufacturer
-source_file: background-geolocation-types/src/core/api/DeviceSettings.ts
-signature: 'manufacturer: string;'
-description: Device manufacturer (e.g., "Huawei", "Samsung").

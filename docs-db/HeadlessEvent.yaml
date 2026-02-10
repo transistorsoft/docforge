@@ -1,6 +1,0 @@
-id: HeadlessEvent
-source_file: background-geolocation-types/src/core/events/HeadlessEvent.ts
-signature: export interface HeadlessEvent {
-categories:
-- Events
-description: Event for Android headless tasks registered via {@link BackgroundGeolocation.registerHeadlessTask}

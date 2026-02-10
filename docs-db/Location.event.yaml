@@ -1,4 +1,0 @@
-id: Location.event
-source_file: background-geolocation-types/src/core/data/Location.ts
-signature: 'event?: string;'
-description: Event responsible for generating this location (`motionchange`, `providerchange`, `geofence`, `heartbeat`).

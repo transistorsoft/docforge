@@ -1,8 +1,0 @@
-id: PersistMode
-source_file: background-geolocation-types/src/enums/PersistMode.ts
-signature: export const PersistMode = {
-categories:
-- Config
-description: |-
-  Persistence modes for BackgroundGeolocation SDK.
-  Mirrors Flutter's `PersistMode` enum.

@@ -1,4 +1,0 @@
-id: DeviceSettingsRequest.lastSeenAt
-source_file: background-geolocation-types/src/core/api/DeviceSettings.ts
-signature: 'lastSeenAt: Date;'
-description: Timestamp of when this screen was last shown.

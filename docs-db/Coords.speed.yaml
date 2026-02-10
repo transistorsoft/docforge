@@ -1,6 +1,0 @@
-id: Coords.speed
-source_file: background-geolocation-types/src/core/data/Location.ts
-signature: 'speed?: number;'
-description: |-
-  Speed in meters / second.
-  ⚠️ Note:  Only present when location came from GPS.  `-1` otherwise.

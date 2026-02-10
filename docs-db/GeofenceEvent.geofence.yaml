@@ -1,4 +1,0 @@
-id: GeofenceEvent.geofence
-source_file: background-geolocation-types/src/core/events/GeofenceEvent.ts
-signature: geofence?:Geofence;
-description: Geofence record which fired

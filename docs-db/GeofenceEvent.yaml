@@ -1,7 +1,0 @@
-id: GeofenceEvent
-source_file: background-geolocation-types/src/core/events/GeofenceEvent.ts
-signature: export interface GeofenceEvent {
-categories:
-- Events
-- Geofencing
-description: Emitted by {@link BackgroundGeolocation.onGeofence}.

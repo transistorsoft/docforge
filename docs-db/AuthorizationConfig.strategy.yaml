@@ -1,4 +1,0 @@
-id: AuthorizationConfig.strategy
-source_file: background-geolocation-types/src/core/config/AuthorizationConfig.ts
-signature: strategy:string;
-description: Authorization strategy.  Only [JWT](https://jwt.io/) is supported.

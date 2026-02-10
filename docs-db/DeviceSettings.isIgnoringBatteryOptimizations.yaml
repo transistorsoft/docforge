@@ -1,7 +1,0 @@
-id: DeviceSettings.isIgnoringBatteryOptimizations
-source_file: background-geolocation-types/src/core/api/DeviceSettings.ts
-signature: 'isIgnoringBatteryOptimizations(): Promise<boolean>;'
-description: |-
-  Returns `true` if device is ignoring battery optimizations for your app.
-
-  In most cases, the SDK performs normally with battery optimizations enabled.

@@ -1,6 +1,0 @@
-id: MotionChangeEvent
-source_file: background-geolocation-types/src/core/events/MotionChangeEvent.ts
-signature: export interface MotionChangeEvent {
-categories:
-- Events
-description: Emitted by {@link BackgroundGeolocation.onMotionChange}.

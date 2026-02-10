@@ -1,4 +1,0 @@
-id: HttpEvent.success
-source_file: background-geolocation-types/src/core/events/HttpEvent.ts
-signature: 'success: boolean;'
-description: True if HTTP request succeeded (e.g., 200, 201, 204).

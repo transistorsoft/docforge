@@ -1,6 +1,0 @@
-id: ActivityConfig.activityRecognitionInterval
-source_file: background-geolocation-types/src/core/config/ActivityConfig.ts
-signature: 'activityRecognitionInterval?: number;'
-description: |-
-  Interval (ms) between motion-activity updates.
-  Default: `10000`

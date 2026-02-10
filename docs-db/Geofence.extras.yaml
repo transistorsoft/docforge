@@ -1,4 +1,0 @@
-id: Geofence.extras
-source_file: background-geolocation-types/src/core/data/Geofence.ts
-signature: 'extras?: Record<string, unknown>;'
-description: Arbitrary key-values appended to the geofence event and posted to your configured {@link HttpConfig.url}.

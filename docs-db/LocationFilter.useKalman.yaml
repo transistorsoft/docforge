@@ -1,8 +1,0 @@
-id: LocationFilter.useKalman
-source_file: background-geolocation-types/src/core/config/LocationFilter.ts
-signature: 'useKalman?: boolean;'
-description: |-
-  Enables the Kalman filter to smooth incoming location speed and position.
-
-  When `true`, the SDK applies a Kalman filter to reduce noise and stabilize
-  velocity and distance calculations. Defaults to `true`.

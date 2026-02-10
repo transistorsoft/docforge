@@ -1,4 +1,0 @@
-id: Logger.ORDER_DESC
-source_file: background-geolocation-types/src/core/api/Logger.ts
-signature: 'readonly ORDER_DESC: -1;'
-description: Sort descending when querying logs. Mirrors {@link Logger.ORDER_DESC} constant.

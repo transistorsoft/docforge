@@ -1,6 +1,0 @@
-id: Coords.heading
-source_file: background-geolocation-types/src/core/data/Location.ts
-signature: 'heading?: number;'
-description: |-
-  Heading in degrees.
-  ⚠️ Note:  Only present when location came from GPS.  `-1` otherwise.

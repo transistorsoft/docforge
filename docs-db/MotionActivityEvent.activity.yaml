@@ -1,4 +1,0 @@
-id: MotionActivityEvent.activity
-source_file: background-geolocation-types/src/core/events/MotionActivityEvent.ts
-signature: 'activity: MotionActivityType;'
-description: Reported device motion activity.

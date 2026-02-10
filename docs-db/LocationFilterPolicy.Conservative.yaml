@@ -1,4 +1,0 @@
-id: LocationFilterPolicy.Conservative
-source_file: background-geolocation-types/src/enums/LocationFilterPolicy.ts
-signature: 'Conservative: 2'
-description: Aggressive — filters heavily, preferring stability over responsiveness.

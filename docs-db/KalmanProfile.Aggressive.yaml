@@ -1,4 +1,0 @@
-id: KalmanProfile.Aggressive
-source_file: background-geolocation-types/src/enums/KalmanProfile.ts
-signature: 'Aggressive: 1,'
-description: Aggressive — responds faster to motion with less smoothing.

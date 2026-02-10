@@ -1,7 +1,0 @@
-id: BackgroundGeolocation.findOrCreateTransistorAuthorizationToken
-source_file: background-geolocation-types/src/core/api/BackgroundGeolocation.ts
-signature: 'findOrCreateTransistorAuthorizationToken(orgname:string, username:string, url?:string): Promise<TransistorAuthorizationToken>;'
-description: |-
-  Find or create a Transistor authorization token.
-
-  See {@link TransistorAuthorizationService} for more information.

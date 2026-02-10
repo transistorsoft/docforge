@@ -1,4 +1,0 @@
-id: NotificationPriority.Default
-source_file: background-geolocation-types/src/enums/NotificationPriority.ts
-signature: 'Default: 0,'
-description: Default notification priority (normal weighting).

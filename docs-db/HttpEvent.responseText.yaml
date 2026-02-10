@@ -1,4 +1,0 @@
-id: HttpEvent.responseText
-source_file: background-geolocation-types/src/core/events/HttpEvent.ts
-signature: 'responseText: string;'
-description: HTTP response text provided by the server.

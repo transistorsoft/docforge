@@ -1,4 +1,0 @@
-id: NotificationPriority.Min
-source_file: background-geolocation-types/src/enums/NotificationPriority.ts
-signature: 'Min: -2,'
-description: Notification strongly weighted to bottom of list; icon hidden.

@@ -1,4 +1,0 @@
-id: Sensors.magnetometer
-source_file: background-geolocation-types/src/core/data/Sensors.ts
-signature: 'magnetometer: boolean;'
-description: '`true` when the device has a magnetometer (compass).'

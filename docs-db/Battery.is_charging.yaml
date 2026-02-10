@@ -1,4 +1,0 @@
-id: Battery.is_charging
-source_file: background-geolocation-types/src/core/data/Location.ts
-signature: 'is_charging: boolean;'
-description: '`true` when device is plugged in to power.'

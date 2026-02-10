@@ -1,4 +1,0 @@
-id: Coords.accuracy
-source_file: background-geolocation-types/src/core/data/Location.ts
-signature: 'accuracy: number;'
-description: Accuracy in meters.

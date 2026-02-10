@@ -1,4 +1,0 @@
-id: Geofence.notifyOnExit
-source_file: background-geolocation-types/src/core/data/Geofence.ts
-signature: 'notifyOnExit?: boolean;'
-description: Set `true` to fire event when device *exits* this geofence.

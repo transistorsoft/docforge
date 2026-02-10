@@ -1,4 +1,0 @@
-id: Coords.floor
-source_file: background-geolocation-types/src/core/data/Location.ts
-signature: 'floor?: number;'
-description: '__[iOS Only]__ When the environment contains indoor-tracking hardware (eg: bluetooth beacons) the current floor within a building.'

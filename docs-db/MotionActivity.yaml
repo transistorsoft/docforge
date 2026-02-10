@@ -1,6 +1,0 @@
-id: MotionActivity
-source_file: background-geolocation-types/src/core/data/Location.ts
-signature: export interface MotionActivity {
-categories:
-- Data
-description: The last known motion-activity when this location was recorded.

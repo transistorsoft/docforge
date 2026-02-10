@@ -1,4 +1,0 @@
-id: CurrentPositionRequest.extras
-source_file: background-geolocation-types/src/core/api/CurrentPositionRequest.ts
-signature: 'extras?: Record<string, any>;'
-description: Optional meta-data to attach to the location. These `extras` will be merged to the configured {@link PersistenceConfig.extras} and persisted / POSTed to your server (if you've configured a {@link HttpConfig.url}).

@@ -1,4 +1,0 @@
-id: State.odometerError
-source_file: background-geolocation-types/src/core/api/State.ts
-signature: 'odometerError: number;'
-description: The accumulated error in the odometer (in meters).

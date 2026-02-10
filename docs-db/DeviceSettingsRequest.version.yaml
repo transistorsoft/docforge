@@ -1,4 +1,0 @@
-id: DeviceSettingsRequest.version
-source_file: background-geolocation-types/src/core/api/DeviceSettings.ts
-signature: 'version: string;'
-description: OS version string.

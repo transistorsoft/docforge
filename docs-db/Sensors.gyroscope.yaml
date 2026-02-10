@@ -1,4 +1,0 @@
-id: Sensors.gyroscope
-source_file: background-geolocation-types/src/core/data/Sensors.ts
-signature: 'gyroscope: boolean;'
-description: '`true` when the device has a gyroscope.'

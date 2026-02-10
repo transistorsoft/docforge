@@ -1,4 +1,0 @@
-id: CurrentPositionRequest.maximumAge
-source_file: background-geolocation-types/src/core/api/CurrentPositionRequest.ts
-signature: 'maximumAge?: number;'
-description: Accept the last-recorded-location if no older than supplied value in `milliseconds`.  Default is `0`.

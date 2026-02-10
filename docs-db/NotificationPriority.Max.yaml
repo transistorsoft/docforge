@@ -1,4 +1,0 @@
-id: NotificationPriority.Max
-source_file: background-geolocation-types/src/enums/NotificationPriority.ts
-signature: 'Max: 2,'
-description: Same as {@link NotificationPriority.High}.

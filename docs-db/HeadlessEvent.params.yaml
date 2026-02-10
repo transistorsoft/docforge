@@ -1,4 +1,0 @@
-id: HeadlessEvent.params
-source_file: background-geolocation-types/src/core/events/HeadlessEvent.ts
-signature: 'params: Record<string, any>;'
-description: General event params according to the event context.

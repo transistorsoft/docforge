@@ -1,4 +1,0 @@
-id: Config.activity
-source_file: background-geolocation-types/src/core/config/Config.ts
-signature: 'activity?: ActivityConfig;'
-description: Motion Activity configuration.

@@ -1,7 +1,0 @@
-id: Geofence.stateUpdatedAt
-source_file: background-geolocation-types/src/core/data/Geofence.ts
-signature: 'readonly stateUpdatedAt?: number;      // epoch timestamp (seconds)'
-description: |-
-  Runtime state:  Epoch timestamp (seconds) of last geofence transition.
-
-  ⚠️ Readonly

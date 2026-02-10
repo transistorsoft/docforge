@@ -1,6 +1,0 @@
-id: MotionActivityType
-source_file: background-geolocation-types/src/enums/MotionActivityType.ts
-signature: export const MotionActivityType = {
-categories:
-- Events
-description: Reported device motion activity names (legacy RN + native).

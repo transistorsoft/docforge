@@ -1,5 +1,8 @@
 background-geolocation-types
 
+# output folder
+docs-db
+
 # Python-generated files
 __pycache__/
 *.py[oc]

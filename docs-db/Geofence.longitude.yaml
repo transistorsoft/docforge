@@ -1,4 +1,0 @@
-id: Geofence.longitude
-source_file: background-geolocation-types/src/core/data/Geofence.ts
-signature: 'longitude: number;'
-description: Longitude of geofence center

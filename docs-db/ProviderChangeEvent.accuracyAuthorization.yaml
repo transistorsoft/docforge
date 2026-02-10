@@ -1,4 +1,0 @@
-id: ProviderChangeEvent.accuracyAuthorization
-source_file: background-geolocation-types/src/core/events/ProviderChangeEvent.ts
-signature: 'accuracyAuthorization: number;'
-description: iOS 14+ "Precise" authorization (platform numeric FULL/REDUCED).

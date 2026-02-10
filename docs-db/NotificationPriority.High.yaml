@@ -1,4 +1,0 @@
-id: NotificationPriority.High
-source_file: background-geolocation-types/src/enums/NotificationPriority.ts
-signature: 'High: 1,'
-description: Notification strongly weighted to top of list; icon strongly weighted to the left.

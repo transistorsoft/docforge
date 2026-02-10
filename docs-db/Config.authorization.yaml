@@ -1,4 +1,0 @@
-id: Config.authorization
-source_file: background-geolocation-types/src/core/config/Config.ts
-signature: 'authorization?: AuthorizationConfig;'
-description: Authorization configuration.

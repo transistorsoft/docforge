@@ -1,4 +1,0 @@
-id: ActivityType.AutomotiveNavigation
-source_file: background-geolocation-types/src/enums/ActivityType.ts
-signature: 'AutomotiveNavigation: 2,'
-description: Automotive navigation activity.

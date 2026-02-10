@@ -1,8 +1,0 @@
-id: GeoConfig.elasticityMultiplier
-source_file: background-geolocation-types/src/core/config/GeoConfig.ts
-signature: 'elasticityMultiplier?: number;'
-description: |-
-  Controls the scale of automatic speed-based {@link distanceFilter} elasticity.
-
-  Increasing `elasticityMultiplier` will result in fewer location samples as speed increases.  A value of `0` has the same effect as
-  {@link disableElasticity} __`true`__.

@@ -1,4 +1,0 @@
-id: SQLQuery.start
-source_file: background-geolocation-types/src/core/api/Logger.ts
-signature: 'start?: number;'
-description: Start date of logs to select (unix timestamp in **milliseconds**).

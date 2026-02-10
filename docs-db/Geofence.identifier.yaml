@@ -1,4 +1,0 @@
-id: Geofence.identifier
-source_file: background-geolocation-types/src/core/data/Geofence.ts
-signature: 'identifier: string;'
-description: Unique geofence identifier.

@@ -1,7 +1,0 @@
-id: BackgroundGeolocation.reset
-source_file: background-geolocation-types/src/core/api/BackgroundGeolocation.ts
-signature: 'reset(config:Config): Promise<State>;'
-description: |-
-  Resets the SDK configuration to documented default-values.
-
-  If an optional {@link Config} is provided, it will be applied *after* the configuration reset.

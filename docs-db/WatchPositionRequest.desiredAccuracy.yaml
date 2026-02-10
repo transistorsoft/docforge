@@ -1,7 +1,0 @@
-id: WatchPositionRequest.desiredAccuracy
-source_file: background-geolocation-types/src/core/api/WatchPositionRequest.ts
-signature: 'desiredAccuracy?: DesiredAccuracy;'
-description: |-
-  Sets the {@link DesiredAccuracy} of location updates from the native location API.
-
-  Defaults to {@link DesiredAccuracy.High}

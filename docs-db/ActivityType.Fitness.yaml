@@ -1,4 +1,0 @@
-id: ActivityType.Fitness
-source_file: background-geolocation-types/src/enums/ActivityType.ts
-signature: 'Fitness: 3,'
-description: Fitness (walking, running, etc).

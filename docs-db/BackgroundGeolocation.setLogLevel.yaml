@@ -1,4 +1,0 @@
-id: BackgroundGeolocation.setLogLevel
-source_file: background-geolocation-types/src/core/api/BackgroundGeolocation.ts
-signature: 'setLogLevel(level: LogLevel): Promise<void>;'
-description: Sets the {@link LoggerConfig.logLevel}.

@@ -1,4 +1,0 @@
-id: Location.battery
-source_file: background-geolocation-types/src/core/data/Location.ts
-signature: 'battery: Battery;'
-description: Device battery level when the location was recorded.

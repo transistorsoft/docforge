@@ -1,4 +1,0 @@
-id: WatchPositionRequest.interval
-source_file: background-geolocation-types/src/core/api/WatchPositionRequest.ts
-signature: 'interval?: number;'
-description: Sets the interval in milliseconds at which to fetch location updates.

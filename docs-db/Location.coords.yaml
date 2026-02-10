@@ -1,4 +1,0 @@
-id: Location.coords
-source_file: background-geolocation-types/src/core/data/Location.ts
-signature: 'coords: Coords;'
-description: '`latitude`, `longitude`, `speed`, `heading`, etc.'

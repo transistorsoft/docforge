@@ -1,4 +1,0 @@
-id: MotionActivity.type
-source_file: background-geolocation-types/src/core/data/Location.ts
-signature: 'type: MotionActivityType;'
-description: 'The reported device {@link MotionActivityType motion activity} (eg: `still`, `on_foot`, `in_vehicle`).'

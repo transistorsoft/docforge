@@ -1,4 +1,0 @@
-id: Geofence.notifyOnDwell
-source_file: background-geolocation-types/src/core/data/Geofence.ts
-signature: 'notifyOnDwell?: boolean;'
-description: Set `true` to fire event when device "loiters" within this geofence for {@link loiteringDelay} milliseconds.

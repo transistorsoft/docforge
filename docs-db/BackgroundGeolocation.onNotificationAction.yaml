@@ -1,4 +1,0 @@
-id: BackgroundGeolocation.onNotificationAction
-source_file: background-geolocation-types/src/core/api/BackgroundGeolocation.ts
-signature: 'onNotificationAction(cb: (buttonId: string) => void): Subscription;'
-description: '[__Android-only__] Subscribe to button-clicks of a custom {@link NotificationConfig.layout} on the Android foreground-service notification.'

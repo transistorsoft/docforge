@@ -1,4 +1,0 @@
-id: AuthorizationConfig.refreshToken
-source_file: background-geolocation-types/src/core/config/AuthorizationConfig.ts
-signature: refreshToken?:string;
-description: The token to be POSTed to {@link refreshUrl}, encoded into the {@link refreshPayload}, when a new {@link accessToken} is required after {@link expires} or when HTTP `401 Unauthorized` is received.

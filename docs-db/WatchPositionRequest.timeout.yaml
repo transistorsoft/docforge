@@ -1,7 +1,0 @@
-id: WatchPositionRequest.timeout
-source_file: background-geolocation-types/src/core/api/WatchPositionRequest.ts
-signature: 'timeout?: number;'
-description: |-
-  Location-timeout in `milliseconds`.
-
-  Default: `60000`.

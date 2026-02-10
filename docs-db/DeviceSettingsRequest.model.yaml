@@ -1,4 +1,0 @@
-id: DeviceSettingsRequest.model
-source_file: background-geolocation-types/src/core/api/DeviceSettings.ts
-signature: 'model: string;'
-description: Device model (e.g., "P40", "SM-G991B").

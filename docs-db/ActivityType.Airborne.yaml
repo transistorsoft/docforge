@@ -1,4 +1,0 @@
-id: ActivityType.Airborne
-source_file: background-geolocation-types/src/enums/ActivityType.ts
-signature: 'Airborne: 5,'
-description: Airborne activity (iOS 15+).

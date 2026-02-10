@@ -1,4 +1,0 @@
-id: Sensors.platform
-source_file: background-geolocation-types/src/core/data/Sensors.ts
-signature: 'platform: string;'
-description: '`ios` | `android`'

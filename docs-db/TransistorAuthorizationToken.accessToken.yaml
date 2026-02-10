@@ -1,4 +1,0 @@
-id: TransistorAuthorizationToken.accessToken
-source_file: background-geolocation-types/src/core/api/TransistorAuthorizationService.ts
-signature: 'accessToken: string;'
-description: 'JWT access token used for `Authorization: Bearer <token>`.'

@@ -1,4 +1,0 @@
-id: MotionChangeEvent.location
-source_file: background-geolocation-types/src/core/events/MotionChangeEvent.ts
-signature: 'location: Location;'
-description: Location associated with the motionchange.

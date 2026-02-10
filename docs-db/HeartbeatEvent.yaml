@@ -1,6 +1,0 @@
-id: HeartbeatEvent
-source_file: background-geolocation-types/src/core/events/HeartbeatEvent.ts
-signature: export interface HeartbeatEvent {
-categories:
-- Events
-description: Emitted by {@link BackgroundGeolocation.onHeartbeat}.

@@ -1,4 +1,0 @@
-id: Config.logger
-source_file: background-geolocation-types/src/core/config/Config.ts
-signature: 'logger?: LoggerConfig;'
-description: Logger configuration.

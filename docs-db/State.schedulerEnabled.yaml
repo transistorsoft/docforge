@@ -1,6 +1,0 @@
-id: State.schedulerEnabled
-source_file: background-geolocation-types/src/core/api/State.ts
-signature: 'schedulerEnabled: boolean;'
-description: |-
-  `true` when a schedule is configured and `startSchedule()` executed.
-  `stopSchedule()` will set this to `false`.

@@ -1,4 +1,0 @@
-id: SQLQuery.end
-source_file: background-geolocation-types/src/core/api/Logger.ts
-signature: 'end?: number;'
-description: End date of logs to select (unix timestamp in **milliseconds**).

@@ -1,4 +1,0 @@
-id: AuthorizationConfig.expires
-source_file: background-geolocation-types/src/core/config/AuthorizationConfig.ts
-signature: expires?:number;
-description: Token expiry time in seconds.

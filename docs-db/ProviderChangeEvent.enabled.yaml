@@ -1,4 +1,0 @@
-id: ProviderChangeEvent.enabled
-source_file: background-geolocation-types/src/core/events/ProviderChangeEvent.ts
-signature: 'enabled: boolean;'
-description: True when device location-services are enabled.

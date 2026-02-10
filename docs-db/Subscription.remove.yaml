@@ -1,4 +1,0 @@
-id: Subscription.remove
-source_file: background-geolocation-types/src/core/events/Subscription.ts
-signature: 'remove(): void;'
-description: Remove the event-listener.

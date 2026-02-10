@@ -1,4 +1,0 @@
-id: AuthorizationEvent.response
-source_file: background-geolocation-types/src/core/events/AuthorizationEvent.ts
-signature: 'response: any;'
-description: Decoded JSON response when success is true; otherwise null.

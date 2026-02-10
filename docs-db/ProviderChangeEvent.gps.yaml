@@ -1,4 +1,0 @@
-id: ProviderChangeEvent.gps
-source_file: background-geolocation-types/src/core/events/ProviderChangeEvent.ts
-signature: 'gps: boolean;'
-description: True if GPS geolocation provider is available.

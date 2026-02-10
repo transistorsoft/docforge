@@ -1,4 +1,0 @@
-id: Config.persistence
-source_file: background-geolocation-types/src/core/config/Config.ts
-signature: 'persistence?: PersistenceConfig;'
-description: Persistence configuration.

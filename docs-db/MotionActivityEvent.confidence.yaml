@@ -1,4 +1,0 @@
-id: MotionActivityEvent.confidence
-source_file: background-geolocation-types/src/core/events/MotionActivityEvent.ts
-signature: 'confidence: number;'
-description: Confidence of the reported activity in percent.

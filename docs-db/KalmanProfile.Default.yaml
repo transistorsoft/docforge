@@ -1,4 +1,0 @@
-id: KalmanProfile.Default
-source_file: background-geolocation-types/src/enums/KalmanProfile.ts
-signature: 'Default: 0,'
-description: Balanced for general-purpose movement (default).

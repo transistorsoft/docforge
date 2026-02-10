@@ -1,4 +1,0 @@
-id: MotionChangeEvent.isMoving
-source_file: background-geolocation-types/src/core/events/MotionChangeEvent.ts
-signature: 'isMoving: boolean;'
-description: True when moving; false when stationary.

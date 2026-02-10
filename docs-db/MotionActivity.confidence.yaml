@@ -1,4 +1,0 @@
-id: MotionActivity.confidence
-source_file: background-geolocation-types/src/core/data/Location.ts
-signature: 'confidence: number;'
-description: Confidence of the reported device motion activity in %.

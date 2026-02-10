@@ -1,4 +1,0 @@
-id: AuthorizationEvent.status
-source_file: background-geolocation-types/src/core/events/AuthorizationEvent.ts
-signature: 'status: number;'
-description: HTTP status returned from your Authorization.refreshUrl (or 0 if failed).

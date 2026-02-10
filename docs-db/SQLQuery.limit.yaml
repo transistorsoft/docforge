@@ -1,4 +1,0 @@
-id: SQLQuery.limit
-source_file: background-geolocation-types/src/core/api/Logger.ts
-signature: 'limit?: number;'
-description: Limit number of records returned.
