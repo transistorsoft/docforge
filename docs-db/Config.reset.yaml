@@ -1,0 +1,12 @@
+id: Config.reset
+source_file: background-geolocation-types/src/core/config/Config.ts
+signature: 'reset?: boolean;'
+description: |-
+  Reset the plugin to its initial state before applying this configuration.  This is probably what you want.
+
+  Defaults to `true`
+
+  If you set this to `false`, the SDK will consume your `Config` only at the first install of your app.  Thereafter, the only way
+  to change your configuration will be to call {@link BackgroundGeolocation.setConfig},
+
+  You will certainly **NOT** want to use `reset: false` during development, as it will prevent your configuration changes from taking effect on subsequent app launches.

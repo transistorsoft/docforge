@@ -1,0 +1,31 @@
+id: BackgroundGeolocation.onLocation
+source_file: background-geolocation-types/src/core/api/BackgroundGeolocation.ts
+signature: 'onLocation(cb: (location: Location) => void, onError?: (err: LocationError) => void): Subscription;'
+description: |-
+  Subscribe to location events.
+
+  Every location recorded by the SDK is provided to your `callback`, including those from {@link onMotionChange}, {@link getCurrentPosition} and {@link watchPosition}.
+
+  @example example-1
+
+  __Error Codes__
+
+  If the native location API fails to return a location, the `failure` callback will be provided a {@link LocationError}.
+
+  __⚠️ Note {@link Location.sample|`Location.sample`}:__
+
+  When performing a {@link onMotionChange} or {@link getCurrentPosition}, the plugin requests **multiple** location *samples* in order to record the most accurate location possible.  These *samples* are **not** persisted to the database but they will be provided to your `callback`, for your convenience, since it can take some seconds for the best possible location to arrive.
+
+  For example, you might use these samples to progressively update the user's position on a map.  You can detect these *samples* in your `callback` via `location.sample == true`.  If you're manually `POST`ing location to your server, you should ignore these locations.
+
+  @event location
+examples:
+  example-1:
+    title: Example 1
+    code:
+      ts: |-
+        const subscription = BackgroundGeolocation.onLocation((location) => {
+          console.log("[onLocation] success: ", location);
+        }, (error) => {
+          console.log("[onLocation] ERROR: ", error);
+        });

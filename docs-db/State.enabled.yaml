@@ -1,0 +1,4 @@
+id: State.enabled
+source_file: background-geolocation-types/src/core/api/State.ts
+signature: 'enabled: boolean;'
+description: Whether the SDK has been enabled via `start` or `startGeofences`.

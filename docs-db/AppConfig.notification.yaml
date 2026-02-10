@@ -1,0 +1,24 @@
+id: AppConfig.notification
+source_file: background-geolocation-types/src/core/config/AppConfig.ts
+signature: 'notification?: NotificationConfig;'
+description: |-
+  [__Android only]__ Configures the persistent foreground-service [[Notification]] required by Android.
+
+  ![](https://dl.dropbox.com/s/acuhy5cu4p7uofr/android-foreground-service-default.png?dl=1)
+
+  See {@link NotificationConfig} for detailed usage.
+
+  @example example-1
+examples:
+  example-1:
+    title: Example 1
+    code:
+      ts: |-
+        BackgroundGeolocation.ready({
+          app: {
+            notification: {
+              title: "Background tracking engaged",
+              text: "My notification text"
+            }
+          }
+        });

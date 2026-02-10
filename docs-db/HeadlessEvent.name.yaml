@@ -1,0 +1,4 @@
+id: HeadlessEvent.name
+source_file: background-geolocation-types/src/core/events/HeadlessEvent.ts
+signature: 'name: Event;'
+description: BackgroundGeolocation event name (e.g., 'location', 'http', 'terminate').

@@ -1,0 +1,4 @@
+id: Location.activity
+source_file: background-geolocation-types/src/core/data/Location.ts
+signature: 'activity: MotionActivity;'
+description: 'Device motion-activity when this location was recorded (eg: `still`, `on_foot`, `in_vehicle`).'

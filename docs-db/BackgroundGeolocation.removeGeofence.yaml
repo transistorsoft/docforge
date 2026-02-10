@@ -1,0 +1,20 @@
+id: BackgroundGeolocation.removeGeofence
+source_file: background-geolocation-types/src/core/api/BackgroundGeolocation.ts
+signature: 'removeGeofence(identifier: string): Promise<boolean>;'
+description: |-
+  Removes a {@link Geofence} having the given {@link Geofence.identifier}.
+
+  @example example-1
+
+  __ℹ️ See also:__
+  - 📘 {@link Geofence | Geofencing Guide}
+examples:
+  example-1:
+    title: Example 1
+    code:
+      ts: |-
+        BackgroundGeolocation.removeGeofence("Home").then((success) => {
+          console.log("[removeGeofence] success");
+        }).catch((error) => {
+          console.log("[removeGeofence] FAILURE: ", error);
+        });

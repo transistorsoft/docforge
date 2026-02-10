@@ -1,0 +1,82 @@
+id: GeoConfig.filter
+source_file: background-geolocation-types/src/core/config/GeoConfig.ts
+signature: 'filter?: LocationFilter;'
+description: |-
+  Defines how raw GPS samples are filtered, denoised, and smoothed before being
+  recorded or used for odometer calculations.
+
+  `LocationFilter` is supplied via {@link GeoConfig.filter} and provides
+  fine-grained control over how the SDK handles noisy or inconsistent
+  location data from the underlying platform.
+
+  **Overview**
+
+  The native platform continuously produces raw `CLLocation` (iOS) or
+  `Location` (Android) samples. The `LocationFilter` applies:
+
+  - Kalman filtering
+  - rolling-window averaging
+  - speed, distance, and accuracy constraints
+
+  These produce smoother paths, reduce jitter, and improve odometer stability.
+
+  @example example-1
+
+  **Filtering Flow**
+
+  ![](https://dl.dropbox.com/scl/fi/71rkzdo2tr3qm651ulou8/location-filter-flowchart.svg?rlkey=16zxs3lnqvlrw137974jbsoj7&dl=1)
+
+  **Parameters**
+
+  | Field | Description |
+  |-------|-------------|
+  | **{@link LocationFilter.policy}** | Selects which filtering policy to apply. See {@link LocationFilterPolicy}. |
+  | **{@link LocationFilter.useKalman}** | Enables Kalman filtering of speed and position (default: `true`). |
+  | **{@link LocationFilter.kalmanDebug}** | Enables verbose Kalman diagnostic logs. |
+  | **{@link LocationFilter.kalmanProfile}** | Selects a Kalman tuning profile (see {@link KalmanProfile}). |
+  | **{@link LocationFilter.rollingWindow}** | Number of samples for rolling burst averaging. Larger values increase smoothness but reduce responsiveness. |
+  | **{@link LocationFilter.burstWindow}** | Duration of each averaging burst (seconds). Default: `10`. |
+  | **{@link LocationFilter.maxBurstDistance}** | Maximum distance (meters) for samples to be included in the same burst window. Default: `300`. |
+  | **{@link LocationFilter.trackingAccuracyThreshold}** | Minimum GPS horizontal accuracy (meters) required to accept a location. Default: `100`. |
+  | **{@link LocationFilter.maxImpliedSpeed}** | Maximum implied speed (m/s) before rejecting a sample as unrealistic. Default: `60` (~216 km/h). |
+  | **{@link LocationFilter.filterDebug}** | Enables verbose logging of filter decisions (`ACCEPTED`, `REJECTED`, etc). |
+  | **{@link LocationFilter.odometerUseKalmanFilter}** | Applies Kalman smoothing to odometer calculations. |
+  | **{@link LocationFilter.odometerAccuracyThreshold}** | Maximum accuracy (meters) allowed for a sample to affect the odometer. Default: `100`. |
+
+  **Notes**
+
+  - Distances are in **meters**.
+  - Time fields are in **milliseconds** unless otherwise specified.
+  - Filtering affects **recorded** locations only; it does *not* influence real-time motion detection.
+
+  **Disable all filtering**
+
+  @example example-2
+examples:
+  example-1:
+    title: Example 1
+    code:
+      ts: |-
+        BackgroundGeolocation.ready({
+          geolocation: {
+            filter: {
+              policy: LocationFilterPolicy.Adjust,
+              useKalman: true,
+              kalmanProfile: KalmanProfile.Default,
+              trackingAccuracyThreshold: 100,
+              odometerAccuracyThreshold: 20
+            }
+          }
+        });
+  example-2:
+    title: Example 2
+    code:
+      ts: |-
+        BackgroundGeolocation.ready({
+          geolocation: {
+            filter: {
+              policy: LocationFilterPolicy.PassThrough,
+              useKalman: false
+            }
+          }
+        });

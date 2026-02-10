@@ -1,0 +1,6 @@
+id: DeviceSettingsRequest.action
+source_file: background-geolocation-types/src/core/api/DeviceSettings.ts
+signature: 'action: string;'
+description: |-
+  The settings screen action to be shown.
+  ⚠️ Set automatically by the native layer.

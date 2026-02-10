@@ -1,0 +1,8 @@
+id: Geofence.notifyOnEntry
+source_file: background-geolocation-types/src/core/data/Geofence.ts
+signature: 'notifyOnEntry?: boolean;'
+description: |-
+  Set `true` to fire event when device *enters* this geofence.
+
+  __ℹ️ See also:__
+  - {@link GeoConfig.geofenceInitialTriggerEntry}

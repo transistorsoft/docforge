@@ -1,0 +1,27 @@
+id: BackgroundGeolocation.start
+source_file: background-geolocation-types/src/core/api/BackgroundGeolocation.ts
+signature: 'start(): Promise<State>;'
+description: |-
+  Enable location + geofence tracking.
+
+  This is the SDK's power **ON** button.  The plugin will initially start into its **stationary** state, fetching an initial location before
+  turning off location services.  Android will be monitoring its **Activity Recognition System** while iOS will create a stationary geofence around
+  the current location.
+
+  __⚠️ Note:__
+  If you've configured a {@link AppConfig.schedule}, this method will override that schedule and engage tracking immediately.
+
+  @example example-1
+
+  __ℹ️ See also:__
+  - {@link stop}
+  - {@link startGeofences}
+  - 📘 [Philosophy of Operation](github:wiki/Philosophy-of-Operation)
+examples:
+  example-1:
+    title: Example 1
+    code:
+      ts: |-
+        BackgroundGeolocation.start().then((state) => {
+          console.log("[start] success - ", state);
+        });

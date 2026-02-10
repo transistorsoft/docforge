@@ -1,0 +1,14 @@
+id: GeoConfig.deferTime
+source_file: background-geolocation-types/src/core/config/GeoConfig.ts
+signature: 'deferTime?: number;'
+description: |-
+  __`[Android only]`__ Sets the maximum wait time in milliseconds for location updates.
+
+  Defaults to `0` (no defer).
+
+  If you pass a value at least 2x larger than the interval specified with {@link locationUpdateInterval},
+  then location delivery may be delayed and multiple locations can be delivered at once.
+
+  Locations are determined at the {@link locationUpdateInterval} rate,
+  but can be delivered in batch after the interval you set in this method. This **can consume less battery** and **give more accurate locations**,
+  depending on the device's hardware capabilities. You should set this value to be as large as possible for your needs if you don't need immediate location delivery.

@@ -1,0 +1,18 @@
+id: ActivityType
+source_file: background-geolocation-types/src/enums/ActivityType.ts
+signature: export const ActivityType = {
+categories:
+- Config
+description: |-
+  iOS Activity Type used with {@link GeoConfig.activityType}.
+
+  Corresponds to Apple's `CLActivityType` enum:
+  https://developer.apple.com/documentation/corelocation/clactivitytype
+
+  | Name                   | Value | Description                           |
+  |------------------------|:-----:|---------------------------------------|
+  | Other                  |   1   | Default/unspecified activity.         |
+  | AutomotiveNavigation   |   2   | Automotive navigation mode.           |
+  | Fitness                |   3   | Fitness-related activity.             |
+  | OtherNavigation        |   4   | Non-automotive navigation mode.       |
+  | Airborne               |   5   | Airborne activity (iOS 15+).          |

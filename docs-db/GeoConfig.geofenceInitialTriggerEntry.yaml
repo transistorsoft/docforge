@@ -1,0 +1,10 @@
+id: GeoConfig.geofenceInitialTriggerEntry
+source_file: background-geolocation-types/src/core/config/GeoConfig.ts
+signature: 'geofenceInitialTriggerEntry?: boolean;'
+description: |-
+  When a device is already within a just-created geofence, fire the **enter** transition immediately.
+
+  Defaults to `true`.  Set `false` to disable triggering a geofence immediately if device is already inside it.
+
+  __ℹ️ See also__
+  - 📘 [[Geofence | Geofencing Guide]].

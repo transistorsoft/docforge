@@ -1,0 +1,4 @@
+id: TransistorAuthorizationToken.url
+source_file: background-geolocation-types/src/core/api/TransistorAuthorizationService.ts
+signature: 'url: string;'
+description: Base tracker server URL that issued this token.

@@ -1,0 +1,29 @@
+id: HttpConfig.timeout
+source_file: background-geolocation-types/src/core/config/HttpConfig.ts
+signature: 'timeout?: number;'
+description: |-
+  HTTP request timeout in **milliseconds**.
+
+  When an HTTP request exceeds this timeout, the SDK fires
+  {@link BackgroundGeolocation.onHttp} with a failure event.
+
+  Defaults to **`60000` ms**.
+
+  @example example-1
+examples:
+  example-1:
+    title: Example 1
+    code:
+      ts: |-
+        BackgroundGeolocation.onHttp((response) => {
+          if (!response.success) {
+            console.log("[onHttp] FAILURE:", response);
+          }
+        });
+
+        BackgroundGeolocation.ready({
+          http: {
+            url: "https://my-server.com/locations",
+            timeout: 3000   // 3-second timeout
+          }
+        });

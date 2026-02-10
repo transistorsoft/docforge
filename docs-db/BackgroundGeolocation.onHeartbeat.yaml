@@ -1,0 +1,34 @@
+id: BackgroundGeolocation.onHeartbeat
+source_file: background-geolocation-types/src/core/api/BackgroundGeolocation.ts
+signature: 'onHeartbeat(cb: (event: HeartbeatEvent) => void): Subscription;'
+description: |-
+  Subscribe to periodic heartbeat events.
+
+  Your `callback` will be executed for each {@link AppConfig.heartbeatInterval} while the device is in **stationary** state (**iOS** requires {@link AppConfig.preventSuspend}: true as well).
+
+  @example example-1
+
+  __⚠️ Note:__
+  -  The {@link Location} provided by the {@link HeartbeatEvent} is only the last-known location.  The *heartbeat* event does not actively engage location-services.  If you wish to get the current location in your `callback`, use {@link getCurrentPosition}.
+  @event heartbeat
+examples:
+  example-1:
+    title: Example 1
+    code:
+      ts: |-
+        BackgroundGeolocation.ready({
+          heartbeatInterval: 60,
+          preventSuspend: true // <-- Required for iOS
+        });
+
+        const subscription = BackgroundGeolocation.onHeartbeat((event) => {
+          console.log("[onHeartbeat] ", event);
+
+          // You could request a new location if you wish.
+          BackgroundGeolocation.getCurrentPosition({
+            samples: 1,
+            persist: true
+          }).then((location) => {
+            console.log("[getCurrentPosition] ", location);
+          });
+        })

@@ -1,0 +1,9 @@
+id: DeviceSettingsRequest
+source_file: background-geolocation-types/src/core/api/DeviceSettings.ts
+signature: export interface DeviceSettingsRequest {
+categories:
+- Device
+description: |-
+  An object for redirecting a User to an Android device's settings screen from a {@link DeviceSettings} request.
+
+  Contains meta-data about the device (`manufacturer`, `model`, `version`) and whether you’ve already shown this screen.

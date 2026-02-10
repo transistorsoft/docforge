@@ -1,0 +1,4 @@
+id: KalmanProfile.Conservative
+source_file: background-geolocation-types/src/enums/KalmanProfile.ts
+signature: 'Conservative: 2'
+description: Conservative — maximum smoothing, slower reaction to change.

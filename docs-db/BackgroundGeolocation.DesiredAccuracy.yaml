@@ -1,0 +1,21 @@
+id: BackgroundGeolocation.DesiredAccuracy
+source_file: background-geolocation-types/src/core/api/BackgroundGeolocation.ts
+signature: 'DesiredAccuracy: typeof import(''../../enums/DesiredAccuracy'').DesiredAccuracy;'
+description: |-
+  __DesiredAccuracy__
+  Controls the native location engine’s target accuracy.
+  Higher accuracy consumes more battery.
+  Used by GeoConfig.desiredAccuracy.
+
+  @example example-1
+  @readonly
+examples:
+  example-1:
+    title: Example 1
+    code:
+      ts: |-
+        BackgroundGeolocation.ready({
+          geolocation: {
+            desiredAccuracy: BackgroundGeolocation.DesiredAccuracy.High
+          }
+        });

@@ -1,0 +1,4 @@
+id: DeviceSettingsRequest.seen
+source_file: background-geolocation-types/src/core/api/DeviceSettings.ts
+signature: 'seen: boolean;'
+description: Whether this screen has previously been shown.

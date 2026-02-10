@@ -1,0 +1,9 @@
+id: NotificationConfig.channelId
+source_file: background-geolocation-types/src/core/config/NotificationConfig.ts
+signature: 'channelId?: string;'
+description: |-
+  Customize the notification channel ID.
+
+  Defaults to `your.package.name.TSLocationManager`
+
+  __NOTE__:  It is not typically required to change this.  Typical use-cases are for users who use an existing Android foreground-service who wish the SDK to share an existing notification and channel.

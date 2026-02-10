@@ -1,0 +1,6 @@
+id: DesiredAccuracy
+source_file: background-geolocation-types/src/enums/DesiredAccuracy.ts
+signature: export const DesiredAccuracy = {
+categories:
+- Config
+description: Desired accuracy presets (meters / platform-tuned).

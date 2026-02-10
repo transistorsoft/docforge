@@ -1,0 +1,34 @@
+id: HttpConfig.autoSyncThreshold
+source_file: background-geolocation-types/src/core/config/HttpConfig.ts
+signature: 'autoSyncThreshold?: number;'
+description: |-
+  The minimum number of persisted records the plugin must accumulate
+  before triggering an automatic upload via {@link autoSync}.
+
+  Defaults to **`0`** (no threshold).
+
+  When set to a value greater than `0`, the SDK will wait until at least that
+  many locations are recorded before uploading to your configured
+  {@link url}.
+
+  Using `autoSyncThreshold` together with {@link batchSync} can
+  significantly **reduce battery consumption**, since batching minimizes the
+  number of HTTP requests (which cost far more power than GPS work).
+
+
+  __⚠️ Warning:__ Ignored during `onMotionChange`
+
+  If you've configured `autoSyncThreshold`, it will be **ignored** during
+  {@link BackgroundGeolocation.onMotionChange} transitions:
+
+  - Entering the **moving** state:
+    The device may have been dormant for a long time; the SDK eagerly uploads
+    queued locations immediately.
+
+  - Entering the **stationary** state:
+    The device may *soon become* dormant; the SDK eagerly uploads all queued
+    locations before going idle.
+
+
+  **See also**
+  - HTTP Guide at {@link HttpConfig}

@@ -1,0 +1,7 @@
+id: Coords.altitude
+source_file: background-geolocation-types/src/core/data/Location.ts
+signature: 'altitude?: number;'
+description: |-
+  [iOS] Altitude above sea-level in meters.
+  [Android] The altitude of this location in meters above the WGS84 reference ellipsoid.
+  - See {@link ellipsoidal_altitude}

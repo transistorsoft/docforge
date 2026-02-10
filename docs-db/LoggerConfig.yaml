@@ -1,0 +1,169 @@
+id: LoggerConfig
+source_file: background-geolocation-types/src/core/config/LoggerConfig.ts
+signature: export interface LoggerConfig {
+categories:
+- Config
+description: |-
+  Logging & diagnostics configuration.
+
+  The **{@link LoggerConfig}** group controls diagnostic logging for the SDK.
+  Use it to adjust how much information is written to the internal log,
+  whether to enable developer-friendly debug aids (soundFX, notifications),
+  and how long logs are retained on the device.
+
+  __Configure via:__ `config.logger`
+
+  ```ts
+  BackgroundGeolocation.ready({
+    logger: {
+      debug: true,
+      logLevel: LogLevel.Verbose,
+      logMaxDays: 7,
+    }
+  });
+  ```
+
+  __Overview__
+
+  Logging serves two major purposes:
+
+  1. **Development & QA**
+     High-verbosity logs and optional audible soundFX make debugging intuitive.
+     You can hear when locations are recorded, when motion changes occur, and
+     when geofences trigger — without watching the console.
+
+  2. **Production diagnostics**
+     Lower verbosity preserves essential operational traces without excessive
+     storage use or privacy impact.
+
+  **See also:** {@link Config.logger}
+
+  | Area        | Keys                                      | Notes |
+  |-------------|--------------------------------------------|-------|
+  | Verbosity   | {@link logLevel}              | off → verbose |
+  | Debug aids  | {@link debug}                 | Enables audible soundFX & debug indicators |
+  | Retention   | {@link logMaxDays}            | Rolling on-device TTL |
+
+  __Log Levels__
+
+  Choose the level appropriate for your environment:
+
+  | Level       | Value | Description |
+  |-------------|:-----:|-------------|
+  | {@link LogLevel.Off}         |  0    | Disable logging entirely |
+  | {@link LogLevel.Error}       |  1    | Failures & critical errors |
+  | {@link LogLevel.Warning}     |  2    | Problems that may affect behavior |
+  | {@link LogLevel.Info}        |  3    | Operational milestones (start/stop, HTTP, geofence state) |
+  | {@link LogLevel.Debug}       |  4    | Granular detail during integration |
+  | {@link LogLevel.Verbose}     |  5    | Maximum detail; full introspection |
+
+  SoundFX and debug indicators require {@link debug} = `true`.
+
+  __Debug Behavior__
+
+  When `debug: true`, the SDK plays short, distinct soundFX when key events occur:
+
+  - Location recorded
+  - Location error
+  - `onMotionChange` transitions
+  - Geofence enter / exit / dwell
+
+  It may also show temporary developer notifications (Android) to visualize state
+  transitions and background operation.
+
+  ⚠️ **Never enable `debug` in production.**
+
+  __Retention__
+
+  Use {@link logMaxDays} to control how long logs remain on device.
+  Old entries are purged automatically on a rolling basis.
+
+  Recommended:
+  - Development: 5–7 days
+  - Production: 1–3 days
+
+  __Retrieving Logs__
+
+  ```ts
+  // Retrieve full log as a string
+  const log = await BackgroundGeolocation.logger.getLog({});
+
+  // Email the log as an attachment
+  await BackgroundGeolocation.logger.emailLog("support@yourcompany.com");
+  ```
+
+  Logs include:
+  - SQLite-backed diagnostic history
+  - Event traces
+  - HTTP upload events
+  - Configuration transitions
+
+  **See also:** {@link logMaxDays}, {@link logLevel}
+
+  __Examples__
+
+  **1) Development profile (maximum visibility)**
+
+  ```ts
+  BackgroundGeolocation.ready({
+    logger: {
+      debug: true,
+      logLevel: LogLevel.Verbose,
+      logMaxDays: 7,
+    }
+  });
+  ```
+
+  **2) Production profile (quiet & conservative)**
+
+  ```ts
+  BackgroundGeolocation.ready({
+    logger: {
+      debug: false,
+      logLevel: LogLevel.Info,
+      logMaxDays: 3,
+    }
+  });
+  ```
+
+  **3) Disable all logging**
+
+  ```ts
+  BackgroundGeolocation.setConfig({
+    logger: {
+      logLevel: LogLevel.Off,
+    }
+  });
+  ```
+
+  __Migration from legacy flat Config__
+
+  Legacy:
+
+  ```ts
+  Config({
+    debug: true,
+    logLevel: LogLevel.Verbose,
+    logMaxDays: 3,
+  });
+  ```
+
+  New (compound):
+
+  ```ts
+  Config({
+    logger: {
+      debug: true,
+      logLevel: LogLevel.Verbose,
+      logMaxDays: 3,
+    }
+  });
+  ```
+
+  Legacy keys are still supported (deprecated), but the compound form is recommended.
+
+  __Recommendations__
+
+  - Use `Verbose` + `debug: true` during active development.
+  - Use `Info` or `Warning` in production.
+  - Do not set `Off` unless required — logs are invaluable for field diagnostics.

@@ -1,0 +1,6 @@
+id: Coords.speed_accuracy
+source_file: background-geolocation-types/src/core/data/Location.ts
+signature: 'speed_accuracy?: number;'
+description: |-
+  Speed accuracy in meters / second.
+  ⚠️ Note:  Only present when location came from GPS.  `-1` otherwise.

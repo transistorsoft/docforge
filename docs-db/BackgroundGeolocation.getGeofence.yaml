@@ -1,0 +1,17 @@
+id: BackgroundGeolocation.getGeofence
+source_file: background-geolocation-types/src/core/api/BackgroundGeolocation.ts
+signature: 'getGeofence(identifier: string): Promise<Geofence>;'
+description: |-
+  Fetch a single {@link Geofence} by identifier from the SDK's database.
+
+  @example example-1
+
+  __ℹ️ See also:__
+  - 📘 {@link Geofence | Geofencing Guide}
+examples:
+  example-1:
+    title: Example 1
+    code:
+      ts: |-
+        let geofence = await BackgroundGeolocation.getGeofence("HOME");
+        console.log("[getGeofence] ", geofence);

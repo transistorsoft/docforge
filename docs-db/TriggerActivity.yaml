@@ -1,0 +1,8 @@
+id: TriggerActivity
+source_file: background-geolocation-types/src/enums/TriggerActivity.ts
+signature: export const TriggerActivity = {
+categories:
+- Config
+description: |-
+  Allowed motion activity names that can trigger motion detection.
+  Mirrors Flutter's TriggerActivity set.

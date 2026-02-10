@@ -1,0 +1,4 @@
+id: ActivityType.Other
+source_file: background-geolocation-types/src/enums/ActivityType.ts
+signature: 'Other: 1,'
+description: Default/unspecified activity.

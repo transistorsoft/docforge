@@ -1,0 +1,6 @@
+id: Coords.heading_accuracy
+source_file: background-geolocation-types/src/core/data/Location.ts
+signature: 'heading_accuracy?: number;'
+description: |-
+  Heading accuracy in degrees.
+  ⚠️ Note:  Only present when location came from GPS.  `-1` otherwise.

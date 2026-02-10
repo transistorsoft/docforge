@@ -1,0 +1,4 @@
+id: Location.geofence
+source_file: background-geolocation-types/src/core/data/Location.ts
+signature: 'geofence?: GeofenceEvent;'
+description: If this location was recorded due to a geofence transition, the corresponding geofence-event.

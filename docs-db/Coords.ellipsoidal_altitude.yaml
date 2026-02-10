@@ -1,0 +1,4 @@
+id: Coords.ellipsoidal_altitude
+source_file: background-geolocation-types/src/core/data/Location.ts
+signature: 'ellipsoidal_altitude?: number;'
+description: The altitude of this location in meters above the WGS84 reference ellipsoid.

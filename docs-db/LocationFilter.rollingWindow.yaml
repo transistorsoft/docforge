@@ -1,0 +1,10 @@
+id: LocationFilter.rollingWindow
+source_file: background-geolocation-types/src/core/config/LocationFilter.ts
+signature: 'rollingWindow?: number;'
+description: |-
+  Number of samples in the rolling window used for burst averaging.
+
+  Higher values produce smoother averaged locations but introduce greater
+  latency in responsiveness to movement.
+
+  **Default:** `5`.

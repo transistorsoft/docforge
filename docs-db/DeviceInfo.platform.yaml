@@ -1,0 +1,9 @@
+id: DeviceInfo.platform
+source_file: background-geolocation-types/src/core/data/DeviceInfo.ts
+signature: 'platform: string;'
+description: |-
+  OS platform name.
+
+  One of:
+  - `"iOS"`
+  - `"Android"`

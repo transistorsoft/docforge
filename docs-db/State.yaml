@@ -1,0 +1,9 @@
+id: State
+source_file: background-geolocation-types/src/core/api/State.ts
+signature: export interface State extends Config {
+categories:
+- Primary API
+description: |-
+  Effective runtime state returned by `BackgroundGeolocation.ready/getState`.
+
+  `State` **is** the active {@link Config} (compound), plus runtime-only fields.

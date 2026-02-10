@@ -1,0 +1,4 @@
+id: CurrentPositionRequest.samples
+source_file: background-geolocation-types/src/core/api/CurrentPositionRequest.ts
+signature: 'samples?: number;'
+description: Sets the maximum number of location-samples to fetch before returning the best possible location to your `callback`.  Default is `3`.  Only the final Location will be persisted.

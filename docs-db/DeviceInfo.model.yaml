@@ -1,0 +1,9 @@
+id: DeviceInfo.model
+source_file: background-geolocation-types/src/core/data/DeviceInfo.ts
+signature: 'model: string;'
+description: |-
+  Device model.
+
+  Examples:
+  - iPhone15,2
+  - Pixel 8 Pro

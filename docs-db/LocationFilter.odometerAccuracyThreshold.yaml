@@ -1,0 +1,10 @@
+id: LocationFilter.odometerAccuracyThreshold
+source_file: background-geolocation-types/src/core/config/LocationFilter.ts
+signature: 'odometerAccuracyThreshold?: number;'
+description: |-
+  Maximum horizontal accuracy (in meters) allowed for a sample to affect the odometer.
+
+  Any location whose `accuracy` exceeds this threshold is **ignored** for
+  odometer updates.
+
+  Default: `20`.

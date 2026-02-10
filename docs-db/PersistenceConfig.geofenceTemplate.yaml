@@ -1,0 +1,105 @@
+id: PersistenceConfig.geofenceTemplate
+source_file: background-geolocation-types/src/core/config/PersistenceConfig.ts
+signature: 'geofenceTemplate?: string;'
+description: |-
+  Optional custom template for rendering {@link GeofenceEvent}
+  JSON request data in HTTP uploads.
+
+  The {@link geofenceTemplate} behaves like
+  {@link locationTemplate}, but includes two
+  additional tags: `geofence.identifier` and `geofence.action`.
+
+  The template is evaluated using Ruby-style ERB tags:
+
+  ```erb
+  <%= variable_name %>
+  ```
+
+  **ℹ️ See also**
+  - {@link locationTemplate}
+  - {@link HttpConfig.rootProperty}
+  - {@link HttpEvent | HTTP Guide}
+
+  @example example-1
+
+  __⚠️ Quoting string data__
+
+  The plugin does *not* automatically apply double-quotes around string
+  data. Templates are JSON-encoded **exactly as written**.
+
+  Incorrect:
+
+  ```typescript
+  BackgroundGeolocation.ready({
+    persistence: {
+      geofenceTemplate: '{"timestamp": <%= timestamp %>}'
+    }
+  });
+  ```
+
+  Produces invalid JSON:
+
+  ```json
+  {"timestamp": 2018-01-01T12:01:01.123Z}
+  ```
+
+  Correct:
+
+  ```typescript
+  BackgroundGeolocation.ready({
+    persistence: {
+      geofenceTemplate: '{"timestamp": "<%= timestamp %>"}'
+    }
+  });
+  ```
+
+  ```json
+  {"timestamp": "2018-01-01T12:01:01.123Z"}
+  ```
+
+  **Template Tags**
+
+  Identical to {@link locationTemplate} with the
+  following additions:
+
+  | Tag                      | Type     | Description |
+  |--------------------------|----------|-------------|
+  | `geofence.identifier`    | `String` | Identifier of the activated geofence |
+  | `geofence.action`        | `String` | `"ENTER"` or `"EXIT"` |
+  | `latitude`               | `Float`  |             |
+  | `longitude`              | `Float`  |             |
+  | `speed`                  | `Float`  | Meters      |
+  | `heading`                | `Float`  | Degrees     |
+  | `accuracy`               | `Float`  | Meters      |
+  | `altitude`               | `Float`  | Meters      |
+  | `altitude_accuracy`      | `Float`  | Meters      |
+  | `timestamp`              | `String` | ISO-8601    |
+  | `uuid`                   | `String` | Unique ID   |
+  | `event`                  | `String` | `motionchange`, `geofence`, `heartbeat`, `providerchange` |
+  | `odometer`               | `Float`  | Meters      |
+  | `activity.type`          | `String` | `still`, `on_foot`, `running`, `on_bicycle`, `in_vehicle`, `unknown` |
+  | `activity.confidence`    | `Integer`| 0–100%      |
+  | `battery.level`          | `Float`  | 0–100%      |
+  | `battery.is_charging`    | `Boolean`| Whether device is plugged in |
+  | `mock`                   | `Boolean`| True when location was generated from a mock app |
+  | `is_moving`              | `Boolean`| True if recorded while in *moving* state |
+  | `timestampMeta`          | `Object` | Timestamp metadata; see {@link GeoConfig.enableTimestampMeta} |
+examples:
+  example-1:
+    title: Example 1
+    code:
+      ts: |-
+        BackgroundGeolocation.ready({
+          persistence: {
+            geofenceTemplate:
+              '{ "lat":<%= latitude %>, "lng":<%= longitude %>, "geofence":"<%= geofence.identifier %>:<%= geofence.action %>" }'
+          }
+        });
+
+        // Or a compact Array form:
+        BackgroundGeolocation.ready({
+          persistence: {
+            geofenceTemplate:
+              '[<%= latitude %>, <%= longitude %>, "<%= geofence.identifier %>", "<%= geofence.action %>"]'
+          }
+        });

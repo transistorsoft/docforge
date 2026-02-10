@@ -1,0 +1,11 @@
+id: LocationFilter.maxImpliedSpeed
+source_file: background-geolocation-types/src/core/config/LocationFilter.ts
+signature: 'maxImpliedSpeed?: number;'
+description: |-
+  Maximum implied speed (in meters/second) permitted before a location
+  sample is rejected.
+
+  If a raw sample implies a speed **greater than this threshold**, it is
+  considered an unrealistic outlier and will be discarded by the filter.
+
+  **Default:** `60` m/s (≈ 216 km/h).

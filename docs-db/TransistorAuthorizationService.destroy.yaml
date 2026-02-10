@@ -1,0 +1,7 @@
+id: TransistorAuthorizationService.destroy
+source_file: background-geolocation-types/src/core/api/TransistorAuthorizationService.ts
+signature: 'destroy(url?: string): Promise<void>;'
+description: |-
+  Destroy the token associated with the given tracker base URL.
+
+  @param url - Tracker base URL. Defaults to the SDK's built‑in value.

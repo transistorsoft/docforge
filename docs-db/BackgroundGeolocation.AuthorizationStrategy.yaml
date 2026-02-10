@@ -1,0 +1,21 @@
+id: BackgroundGeolocation.AuthorizationStrategy
+source_file: background-geolocation-types/src/core/api/BackgroundGeolocation.ts
+signature: 'AuthorizationStrategy: typeof import(''../../enums/AuthorizationStrategy'').AuthorizationStrategy;'
+description: |-
+  __AuthorizationStrategy__
+  Defines how the HTTP service performs authorization.
+  Includes basic, JWT, and custom strategies.
+  Used by AuthorizationConfig.strategy.
+
+  @example example-1
+  @readonly
+examples:
+  example-1:
+    title: Example 1
+    code:
+      ts: |-
+        BackgroundGeolocation.ready({
+          authorization: {
+            strategy: BackgroundGeolocation.AuthorizationStrategy.Jwt
+          }
+        });

@@ -1,0 +1,28 @@
+id: BackgroundGeolocation.sync
+source_file: background-geolocation-types/src/core/api/BackgroundGeolocation.ts
+signature: 'sync(): Promise<Array<Object>>;'
+description: |-
+  Manually execute upload to configured {@link HttpConfig.url} of all {@link Location} records currently stored in the SDK's SQLite database.
+
+  If the plugin is configured for HTTP with an {@link HttpConfig.url} and {@link HttpConfig.autoSync} `false`, the {@link sync} method will initiate POSTing the locations
+  currently stored in the native SQLite database to your configured {@link HttpConfig.url}.  When your HTTP server returns a response of `200 OK`, that record(s)
+  in the database will be DELETED.
+
+  If you configured {@link HttpConfig.batchSync} `true`, all the locations will be sent to your server in a single HTTP POST request, otherwise the plugin will
+  execute an HTTP post for **each** {@link Location} in the database (REST-style).  Your callback will be executed and provided with a `List` of all the
+  locations from the SQLite database.  If you configured the plugin for HTTP (by configuring a {@link HttpConfig.url}), your callback will be executed after all
+  the HTTP request(s) have completed.  If the plugin failed to sync to your server (possibly because of no network connection), the failure callback will
+  be called with an error message.  If you are **not** using the HTTP features, {@link sync} will delete all records from its SQLite database.
+
+  @example example-1
+   ℹ️ For more information, see the {@link HttpConfig | HTTP Guide}
+examples:
+  example-1:
+    title: Example 1
+    code:
+      ts: |-
+        BackgroundGeolocation.sync((records) => {
+          console.log("[sync] success: ", records);
+        }).catch((error) => {
+          console.log("[sync] FAILURE: ", error);
+        });

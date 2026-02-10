@@ -1,0 +1,4 @@
+id: Config.geolocation
+source_file: background-geolocation-types/src/core/config/Config.ts
+signature: 'geolocation?: GeoConfig;'
+description: Geolocation configuration.

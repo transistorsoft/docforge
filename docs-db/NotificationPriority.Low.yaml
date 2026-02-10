@@ -1,0 +1,4 @@
+id: NotificationPriority.Low
+source_file: background-geolocation-types/src/enums/NotificationPriority.ts
+signature: 'Low: -1,'
+description: Notification weighted to bottom of list; icon weighted to the right.

@@ -1,0 +1,10 @@
+id: DeviceInfo.manufacturer
+source_file: background-geolocation-types/src/core/data/DeviceInfo.ts
+signature: 'manufacturer: string;'
+description: |-
+  Device manufacturer.
+
+  Examples:
+  - Apple
+  - Google
+  - Samsung

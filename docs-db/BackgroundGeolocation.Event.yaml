@@ -1,0 +1,9 @@
+id: BackgroundGeolocation.Event
+source_file: background-geolocation-types/src/core/api/BackgroundGeolocation.ts
+signature: 'Event: typeof import(''../../enums/Event'').Event;'
+description: |-
+  __Event__
+  Enumerates all event names emitted by the SDK (location, geofence,
+  motionchange, heartbeat, etc).
+
+  @readonly

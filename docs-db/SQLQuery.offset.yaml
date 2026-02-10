@@ -1,0 +1,4 @@
+id: SQLQuery.offset
+source_file: background-geolocation-types/src/core/api/Logger.ts
+signature: 'offset?: number;'
+description: Offset into the result set (for paging).

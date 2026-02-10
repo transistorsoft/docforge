@@ -1,0 +1,92 @@
+id: ActivityConfig
+source_file: background-geolocation-types/src/core/config/ActivityConfig.ts
+signature: export interface ActivityConfig {
+categories:
+- Config
+description: |-
+  Activity Recognition configuration.
+
+  The {@link ActivityConfig} object defines options related to motion and activity detection
+  for the {@link BackgroundGeolocation} SDK. These parameters control how the SDK interprets
+  transitions between *moving* and *stationary* states using platform motion APIs
+  (Android Activity Recognition / iOS Core Motion).
+
+  __Overview__
+
+  {@link ActivityConfig} is supplied via {@link Config.activity} when calling
+  {@link BackgroundGeolocation.ready} or {@link BackgroundGeolocation.setConfig}.
+
+  | Category              | Description |
+  |-----------------------|-------------|
+  | Motion Detection      | Tune recognition cadence and sensitivity via {@link ActivityConfig.activityRecognitionInterval} *(Android)* and {@link ActivityConfig.minimumActivityRecognitionConfidence} *(Android)*. |
+  | Behavioral Options    | Control moving↔stationary transitions with {@link ActivityConfig.disableStopDetection} *(cross-platform behavioral)*, {@link ActivityConfig.stopOnStationary} *(cross-platform behavioral)*, and {@link ActivityConfig.motionTriggerDelay} *(Android)*. |
+  | Motion Updates Toggle | Enable/disable platform activity updates with {@link ActivityConfig.disableMotionActivityUpdates} *(Android & iOS)*. |
+  | iOS Timing            | Fine-tune stop-detection timing with {@link ActivityConfig.stopDetectionDelay} *(iOS)*. |
+
+  @example example-1
+
+  __Migrating from legacy `Config`__
+
+  Older versions of the SDK placed activity-recognition parameters directly
+  on the root {@link Config} object:
+
+  ```ts
+  BackgroundGeolocation.ready({
+    activityRecognitionInterval: 10000,
+    disableStopDetection: true,
+    stopOnStationary: true
+  });
+  ```
+
+  These values are now grouped under {@link ActivityConfig}:
+
+  ```ts
+  BackgroundGeolocation.ready({
+    activity: {
+      activityRecognitionInterval: 10000,
+      disableStopDetection: true,
+      stopOnStationary: true
+    }
+  });
+  ```
+
+  __See also__
+  - {@link Config.activity} for where this configuration is supplied.
+examples:
+  example-1:
+    title: Example 1
+    code:
+      ts: |-
+        import BackgroundGeolocation, {
+          type Config,
+          type ActivityConfig
+        } from 'react-native-background-geolocation';
+
+        const activity: ActivityConfig = {
+          // Android: poll activity recognition every 10s
+          activityRecognitionInterval: 10000,
+
+          // Android: require ≥75% confidence before changing activity
+          minimumActivityRecognitionConfidence: 75,
+
+          // Cross-platform: enable/disable automatic stop detection
+          disableStopDetection: false,
+
+          // Cross-platform: automatically stop when stationary
+          stopOnStationary: true,
+
+          // Android: delay motion-trigger transitions by 30s
+          motionTriggerDelay: 30000,
+
+          // Android & iOS: disable platform motion activity APIs
+          disableMotionActivityUpdates: false,
+
+          // iOS: delay stop-detection by 10s
+          stopDetectionDelay: 10000
+        };
+
+        const config: Config = {
+          activity
+        };
+
+        await BackgroundGeolocation.ready(config);

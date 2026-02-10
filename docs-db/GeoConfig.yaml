@@ -1,0 +1,148 @@
+id: GeoConfig
+source_file: background-geolocation-types/src/core/config/GeoConfig.ts
+signature: export interface GeoConfig {
+categories:
+- Config
+description: |-
+  **Geolocation Configuration**
+
+  {@link GeoConfig} defines all geolocation-related options for the
+  {@link BackgroundGeolocation} SDK.
+
+  These parameters control:
+  - how often the SDK acquires locations,
+  - how accurate those locations should be,
+  - how long tracking persists when the device becomes stationary,
+  - platform-specific permission behavior,
+  - filtering / denoising rules,
+  - elastic responsiveness to motion and idling.
+
+  **Overview**
+
+  {@link GeoConfig} is supplied via {@link Config.geolocation} when calling
+  {@link BackgroundGeolocation.ready} or {@link BackgroundGeolocation.setConfig}.
+
+  | Category      | Description |
+  |---------------|-------------|
+  | **Accuracy**  | Precision and noise control via {@link desiredAccuracy}, {@link distanceFilter}, {@link locationUpdateInterval}, {@link fastestLocationUpdateInterval}. |
+  | **Elasticity** | Controls dynamic location sampling-rate: {@link disableElasticity}, {@link elasticityMultiplier}, {@link stopTimeout}. |
+  | **Permissions** | Platform authorization and alerts: {@link locationAuthorizationRequest}, {@link locationAuthorizationAlert}, {@link disableLocationAuthorizationAlert}. |
+  | **Geofencing** | Geofence proximity, accuracy mode, and initial triggers. |
+  | **Filtering** | Fine-grained denoising via {@link LocationFilter}. |
+
+  **Example**
+
+  ```ts
+  import BackgroundGeolocation, {
+    Config,
+    GeoConfig,
+    DesiredAccuracy,
+    LocationFilter
+  } from "react-native-background-geolocation";
+
+  const config: Config = {
+    geolocation: {
+      // High-precision GPS
+      desiredAccuracy: DesiredAccuracy.High,
+
+      // Move at least 50m before recording next location
+      distanceFilter: 50,
+
+      // Consider stationary after 5 minutes with no motion
+      stopTimeout: 5,
+
+      // Automatically stop tracking after 120 minutes of continuous operation
+      stopAfterElapsedMinutes: 120,
+
+      // iOS: Show blue bar / pill when active in background
+      showsBackgroundLocationIndicator: true,
+
+      // Noise-reduction / denoising filter
+      filter: {
+        policy: "adjust",
+        maxImpliedSpeed: 60,
+        odometerAccuracyThreshold: 20,
+        trackingAccuracyThreshold: 100
+      },
+
+      // Geofencing behavior
+      geofenceProximityRadius: 1000,
+      geofenceInitialTriggerEntry: true,
+      geofenceModeHighAccuracy: true,
+
+      // Permissions / alerts (iOS)
+      locationAuthorizationRequest: "Always",
+      disableLocationAuthorizationAlert: false,
+      locationAuthorizationAlert: {
+        titleWhenNotEnabled: "Location Required",
+        message: "Enable location access for full functionality.",
+        cancelButton: "Cancel",
+        settingsButton: "Settings"
+      }
+    },
+
+    // Additional compound config groups
+    http: {
+      url: "https://example.com/api/locations",
+      autoSync: true,
+      batchSync: true,
+      maxBatchSize: 10,
+      method: "POST",
+      params: {
+        user_id: 1234,
+        trip_id: 5678
+      },
+      headers: {
+        "X-FOO": "bar"
+      }
+    },
+
+    app: {
+      stopOnTerminate: false,
+      startOnBoot: true
+    },
+
+    logging: {
+      debug: true,
+      logLevel: BackgroundGeolocation.LOG_LEVEL_VERBOSE
+    }
+  };
+
+  await BackgroundGeolocation.ready(config);
+  ```
+
+  **Migration from Legacy Flat Config**
+
+  Previously, geolocation options were configured directly on the root
+  {@link Config} object:
+
+  ```ts
+  // Legacy (flat)
+  BackgroundGeolocation.ready({
+    desiredAccuracy: BackgroundGeolocation.DESIRED_ACCURACY_HIGH,
+    distanceFilter: 10,
+    stopTimeout: 5,
+    stationaryRadius: 150,
+    locationTimeout: 60
+  });
+  ```
+
+  These options now belong to this {@link GeoConfig} group:
+
+  ```ts
+  BackgroundGeolocation.ready({
+    geolocation: {
+      desiredAccuracy: DesiredAccuracy.High,
+      distanceFilter: 10,
+      stopTimeout: 5,
+      stationaryRadius: 150,
+      locationTimeout: 60
+    }
+  });
+  ```
+
+  Legacy flat fields remain supported for backward compatibility, but they are now
+  marked **deprecated**. Prefer {@link Config.geolocation} going forward for clarity and structure.
+
+  **See also**
+  - {@link LocationFilter}

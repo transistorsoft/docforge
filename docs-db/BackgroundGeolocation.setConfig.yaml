@@ -1,0 +1,23 @@
+id: BackgroundGeolocation.setConfig
+source_file: background-geolocation-types/src/core/api/BackgroundGeolocation.ts
+signature: 'setConfig(config: Partial<Config>): Promise<State>;'
+description: |-
+  Re-configure the SDK's {@link Config} parameters.  This is the method to use when you wish to *change*
+  the plugin {@link Config} *after* {@link ready} has been executed.
+
+  The supplied {@link Config} will be appended to the current configuration and applied in realtime.
+
+  @example example-1
+examples:
+  example-1:
+    title: Example 1
+    code:
+      ts: |-
+        BackgroundGeolocation.setConfig({
+          desiredAccuracy: Config.DESIRED_ACCURACY_HIGH,
+          distanceFilter: 100.0,
+          stopOnTerminate: false,
+          startOnBoot: true
+        }).then((state) => {
+          console.log("[setConfig] success: ", state);
+        })

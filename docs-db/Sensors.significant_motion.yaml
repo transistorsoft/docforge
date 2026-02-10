@@ -1,0 +1,4 @@
+id: Sensors.significant_motion
+source_file: background-geolocation-types/src/core/data/Sensors.ts
+signature: 'significant_motion?: boolean;'
+description: __[Android only]__ `true` when the Android device has significant motion hardware.

@@ -1,0 +1,38 @@
+id: ActivityConfig.disableStopDetection
+source_file: background-geolocation-types/src/core/config/ActivityConfig.ts
+signature: 'disableStopDetection?: boolean;'
+description: |-
+  Disable motion-activity related stop-detection.
+
+  __iOS:__
+
+  Disables the accelerometer-based **Stop-detection System**.  When disabled, the plugin will use the default iOS behavior of automatically
+  turning off location-services when the device has stopped for **exactly 15 minutes**.  When disabled, you will no longer have control over {@link GeoConfig.stopTimeout}.
+
+  To *completely* disable automatically turning off iOS location-services, you must also provide {@link GeoConfig.pausesLocationUpdatesAutomatically} __`false`__.
+
+  @example example-1
+
+  __⚠️ iOS location-services will **never** turn off!__
+
+  With the above configuration, iOS location-services will never turn off and you could **quickly discharge the battery**.  Do **not** do
+  this unless you know *exactly* what you're doing (eg: A jogging app with `[Start workout]` / `[Stop Workout]` buttons
+  executing {@link BackgroundGeolocation.changePace}).
+
+  __iOS Stop-detection timing__
+
+  ![](https://dl.dropboxusercontent.com/s/ojjdfkmua15pskh/ios-stop-detection-timing.png?dl=1)
+
+  __Android__
+
+  Location-services **will never turn OFF** if you set this to **`true`**!  It will be purely up to you or the user to execute
+  {@link BackgroundGeolocation.changePace} __`false`__ or {@link BackgroundGeolocation.stop} to turn off location-services.
+examples:
+  example-1:
+    title: Example 1
+    code:
+      ts: |-
+        BackgroundGeolocation.ready({
+          disableStopDetection: true,
+          pausesLocationUpdatesAutomatically: false
+        });

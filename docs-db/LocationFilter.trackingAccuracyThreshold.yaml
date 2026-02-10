@@ -1,0 +1,11 @@
+id: LocationFilter.trackingAccuracyThreshold
+source_file: background-geolocation-types/src/core/config/LocationFilter.ts
+signature: 'trackingAccuracyThreshold?: number;'
+description: |-
+  Minimum acceptable horizontal accuracy (in meters) for a sample to qualify
+  for tracking.
+
+  Locations with an accuracy value **greater (worse)** than this threshold
+  are discarded and will not be used in path or odometer calculations.
+
+  **Default:** `100` meters.

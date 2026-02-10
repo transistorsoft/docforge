@@ -1,0 +1,23 @@
+id: BackgroundGeolocation.TriggerActivity
+source_file: background-geolocation-types/src/core/api/BackgroundGeolocation.ts
+signature: 'TriggerActivity: typeof import(''../../enums/TriggerActivity'').TriggerActivity;'
+description: |-
+  __TriggerActivity__
+  Defines which physical motion activities can trigger motion-detection
+  transitions (still → moving).
+  Used by ActivityConfig.triggerActivities.
+
+  @example example-1
+  @readonly
+examples:
+  example-1:
+    title: Example 1
+    code:
+      ts: |-
+        BackgroundGeolocation.ready({
+          activity: {
+            triggerActivities: [
+              BackgroundGeolocation.TriggerActivity.InVehicle
+            ]
+          }
+        });

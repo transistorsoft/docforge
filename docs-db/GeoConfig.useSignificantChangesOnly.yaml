@@ -1,0 +1,27 @@
+id: GeoConfig.useSignificantChangesOnly
+source_file: background-geolocation-types/src/core/config/GeoConfig.ts
+signature: 'useSignificantChangesOnly?: boolean;'
+description: |-
+  Set `true` in order to disable constant background-tracking.  Locations will be recorded only periodically.
+
+  Defaults to `false`.  A location will be recorded only every `500` to `1000` meters (can be higher in non urban environments; depends upon the spacing of Cellular towers).  Many of the plugin's configuration parameters **will have no effect**, such as {@link distanceFilter}, {@link stationaryRadius}, {@link activityType}, etc.
+
+  Using `significantChangesOnly: true` will provide **significant** power-saving at the expense of fewer recorded locations.
+
+  **iOS**
+
+  Engages the iOS [Significant Location Changes API](https://developer.apple.com/reference/corelocation/cllocationmanager/1423531-startmonitoringsignificantlocati?language=objc) API for only periodic location updates every 500-1000 meters.
+
+  ⚠️ If Apple has rejected your application, refusing to grant your app the privilege of using the **`UIBackgroundMode: "location"`**, this can be a solution.
+
+  **Android**
+
+  A location will be recorded several times per hour while the device is in the *moving* state.  No foreground-service will be run (nor its corresponding persistent {@link NotificationConfig}).
+
+  Example 1 **`useSignificantChangesOnly: true`**
+
+  ![](https://dl.dropboxusercontent.com/s/wdl9e156myv5b34/useSignificantChangesOnly.png?dl=1)
+
+  Example 2 **`useSignificantChangesOnly: false` (Default)**
+
+  ![](https://dl.dropboxusercontent.com/s/hcxby3sujqanv9q/useSignificantChangesOnly-false.png?dl=1)

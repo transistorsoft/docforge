@@ -1,0 +1,22 @@
+id: HttpConfig.maxBatchSize
+source_file: background-geolocation-types/src/core/config/HttpConfig.ts
+signature: 'maxBatchSize?: number;'
+description: |-
+  Controls the number of records attached to **each** batched HTTP request.
+
+  Defaults to **`-1`** (no maximum).
+
+  When using {@link batchSync} with {@link url} configured,
+  this option limits how many queued location records may be included in a single
+  HTTP request.
+
+  If the number of queued records exceeds `maxBatchSize`, the SDK will generate
+  **multiple HTTP requests** until the queue is fully drained.
+
+  This prevents extremely large request bodies when the device has been offline
+  for long periods (where megabytes of location data may accumulate).
+
+  **See also**
+  - {@link batchSync}
+  - {@link url}
+  - **HTTP Guide** at {@link HttpConfig}

@@ -1,0 +1,7 @@
+id: HeartbeatEvent.location
+source_file: background-geolocation-types/src/core/events/HeartbeatEvent.ts
+signature: 'location: Location;'
+description: |-
+  The last-known location.
+  Note: Heartbeat does not actively engage location-services.
+  Use getCurrentPosition for a fresh fix.

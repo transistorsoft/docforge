@@ -1,0 +1,18 @@
+id: BackgroundGeolocation.onEnabledChange
+source_file: background-geolocation-types/src/core/api/BackgroundGeolocation.ts
+signature: 'onEnabledChange(cb: (enabled: boolean) => void): Subscription;'
+description: |-
+  Subscribe to changes in plugin {@link State.enabled}.
+
+  Fired when the SDK's {@link State.enabled} changes.  For example, executing {@link start} and {@link stop} will cause the `onEnabledChange` event to fire.
+
+  @example example-1
+  @event enabledchange
+examples:
+  example-1:
+    title: Example 1
+    code:
+      ts: |-
+        const subscription = BackgroundGeolocation.onEnabledChange(isEnabled => {
+          console.log("[onEnabledChanged] isEnabled? ", isEnabled);
+        });

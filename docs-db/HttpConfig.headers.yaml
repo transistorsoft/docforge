@@ -1,0 +1,46 @@
+id: HttpConfig.headers
+source_file: background-geolocation-types/src/core/config/HttpConfig.ts
+signature: 'headers?: Record<string, string>;'
+description: |-
+  Optional HTTP headers applied to every outbound upload request.
+
+  These headers are merged with the SDK’s automatically applied headers
+  (such as `"content-type": "application/json"`). When using authorization,
+  the SDK also injects an `Authorization` header as needed.
+
+  @example example-1
+
+  Observing incoming requests at your server:
+
+  ```text
+  POST /locations
+  {
+    "host": "tracker.transistorsoft.com",
+    "content-type": "application/json",
+    "content-length": "456",
+    ...
+    "authorization": "Bearer <a secret key>",
+    "X-FOO": "BAR"
+  }
+  ```
+
+  **Note:**
+  The SDK automatically applies several required headers, including:
+  - `"content-type": "application/json"`
+  - authorization headers when using {@link AuthorizationConfig}
+
+  __See also:__ the **HTTP Guide** under {@link HttpConfig}.
+examples:
+  example-1:
+    title: Example 1
+    code:
+      ts: |-
+        BackgroundGeolocation.ready({
+          http: {
+            url: "https://my.server.com",
+            headers: {
+              Authorization: "Bearer <a secret key>",
+              "X-FOO": "BAR"
+            }
+          }
+        });

@@ -1,0 +1,6 @@
+id: PermissionRationale.message
+source_file: background-geolocation-types/src/core/config/AppConfig.ts
+signature: 'message?: string;'
+description: |-
+  The body text of the dialog.
+  Provide an explanation of why you need this permission, similar in purpose to iOS' __`NSLocationAlwaysAndWhenInUseUsageDescription`__.

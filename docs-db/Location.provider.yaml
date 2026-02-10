@@ -1,0 +1,4 @@
+id: Location.provider
+source_file: background-geolocation-types/src/core/data/Location.ts
+signature: 'provider?: ProviderChangeEvent;'
+description: If this location was recorded due to {@link ProviderChangeEvent}, this is a reference to the location-provider state.

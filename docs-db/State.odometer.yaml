@@ -1,0 +1,6 @@
+id: State.odometer
+source_file: background-geolocation-types/src/core/api/State.ts
+signature: 'odometer: number;'
+description: |-
+  Current distance-traveled in meters.
+  See: {@link odometerError}, {@link BackgroundGeolocation.setOdometer}, {@link BackgroundGeolocation.getOdometer}.

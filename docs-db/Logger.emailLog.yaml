@@ -1,0 +1,32 @@
+id: Logger.emailLog
+source_file: background-geolocation-types/src/core/api/Logger.ts
+signature: 'emailLog(email: string, query?: SQLQuery): Promise<void | boolean>;'
+description: |-
+  Email the result of {@link Logger.getLog} using device's mail client.
+
+  @example example-1
+
+  __ℹ️ See also:__
+  - {@link LoggerConfig.logLevel}
+  - {@link Logger.getLog}
+  - {@link Logger.uploadLog}
+  - 📘[Debugging Guide](github:wiki/Debugging).
+examples:
+  example-1:
+    title: Example 1
+    code:
+      ts: |-
+        let Logger = BackgroundGeolocation.logger;
+        Logger.emailLog("foo@bar.com").then((success) => {
+          console.log("[emailLog] success");
+        }).catch((error) => {
+          console.log("[emailLog] FAILURE: ", error);
+        });
+
+        // Or constrain results by providing a SQLQuery
+        Logger.emailLog("foo@bar.com", {
+          start: Date.parse("2019-09-19"),
+          end: Date.parse("2019-09-20"),
+          order: Logger.ORDER_ASC,
+          limit: 1000
+        });

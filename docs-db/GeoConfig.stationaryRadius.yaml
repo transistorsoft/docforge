@@ -1,0 +1,20 @@
+id: GeoConfig.stationaryRadius
+source_file: background-geolocation-types/src/core/config/GeoConfig.ts
+signature: 'stationaryRadius?: number;'
+description: |-
+  The minimum distance the device must move beyond the stationary location for aggressive background-tracking to engage.
+
+  ⚠️ Note: The device will not detect the exact moment it moves out of the stationary-radius.  In normal conditions, it will typically
+  take **~200 meters** of movement before the plugin begins tracking.
+
+  Configuring **`stationaryRadius: 0`** has **NO EFFECT**.  In fact the plugin enforces a minimum **`stationaryRadius`** of `25` and
+  in-practice, the native API won't respond for at least 200 meters.
+
+  The following image shows the typical distance iOS requires to detect exit of the **`stationaryRadius`**:
+  - *Green polylines*: represent a transition from **stationary** state to **moving** (__~200 meters__).
+  - *Red circles*: locations where the plugin entered the **stationary** state.
+
+  ![](https://dl.dropboxusercontent.com/s/vnio90swhs6xmqm/screenshot-ios-stationary-exit.png?dl=1)
+
+  ℹ️ See also:
+  - 📘 [Philosophy of Operation](github:wiki/Philosophy-of-Operation)

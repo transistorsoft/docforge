@@ -1,0 +1,7 @@
+id: Geofence.hits
+source_file: background-geolocation-types/src/core/data/Geofence.ts
+signature: 'readonly hits?: number;                // number of triggers'
+description: |-
+  Runtime state:  Number of times this geofence has been triggered.
+
+  ⚠️ Readonly

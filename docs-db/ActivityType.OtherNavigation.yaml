@@ -1,0 +1,4 @@
+id: ActivityType.OtherNavigation
+source_file: background-geolocation-types/src/enums/ActivityType.ts
+signature: 'OtherNavigation: 4,'
+description: Other navigation (non-automotive).

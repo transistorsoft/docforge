@@ -1,0 +1,36 @@
+id: NotificationConfig.channelName
+source_file: background-geolocation-types/src/core/config/NotificationConfig.ts
+signature: 'channelName?: string;'
+description: |-
+  Configure the name of the plugin's notification-channel used to display the required, persistent foreground notification.
+
+  On Android O+, the plugin's foreground-service needs to create a "Notification Channel".  The name of this channel can be seen in:
+  > `Settings->App & Notifications->Your App.`
+
+  Defaults to your application's name from `AndroidManifest`.
+
+  ![](https://dl.dropboxusercontent.com/s/zgcxau7lyjfuaw9/android-notificationChannelName.png?dl=1)\
+
+
+  @example example-1
+examples:
+  example-1:
+    title: Example 1
+    code:
+      ts: |-
+        BackgroundGeolocation.ready({
+          app: {
+            notification: {
+              channelName: "Location Tracker"
+            }
+         }
+        });
+
+        // or with #setConfig
+        BackgroundGeolocation.setConfig({
+          app: {
+            notification: {
+              channelName: "My new channel name"
+            }
+          }
+        });

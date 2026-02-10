@@ -1,0 +1,7 @@
+id: BackgroundGeolocation.destroyTransistorAuthorizationToken
+source_file: background-geolocation-types/src/core/api/BackgroundGeolocation.ts
+signature: 'destroyTransistorAuthorizationToken(url:string): Promise<void>;'
+description: |-
+  Destroy a Transistor authorization token.
+
+  See {@link TransistorAuthorizationService} for more information.

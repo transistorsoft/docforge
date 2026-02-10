@@ -1,0 +1,4 @@
+id: Geofence.latitude
+source_file: background-geolocation-types/src/core/data/Geofence.ts
+signature: 'latitude: number;'
+description: Latitude of geofence center

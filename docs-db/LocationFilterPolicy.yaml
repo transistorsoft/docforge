@@ -1,0 +1,77 @@
+id: LocationFilterPolicy
+source_file: background-geolocation-types/src/enums/LocationFilterPolicy.ts
+signature: export const LocationFilterPolicy = {
+categories:
+- Config
+description: |-
+  Defines the filtering policy applied to incoming raw GPS samples before they
+  are accepted, averaged, or rejected by the {@link LocationFilter}.
+
+  The filtering policy determines how aggressively the plugin removes noisy,
+  inaccurate, or redundant location updates. It represents the *first stage*
+  in the SDK’s data-quality pipeline — before Kalman smoothing, burst averaging,
+  or other denoising steps are applied.
+
+  Choosing the correct policy depends on your app’s tolerance for jitter versus
+  responsiveness:
+
+  - Fitness or vehicle-tracking apps often prefer stronger filtering.
+  - Survey or scientific apps may prefer capturing unmodified raw samples.
+
+  **Profiles**
+
+  | Policy | Description | Use Case |
+  |--------|-------------|----------|
+  | {@link LocationFilterPolicy.PassThrough} | **No filtering.** Every received sample is recorded, even if noisy or identical to the previous one. | Debugging, diagnostics, scenarios requiring raw data. |
+  | {@link LocationFilterPolicy.Adjust} | **Balanced filtering.** Smooths and rejects only clearly invalid samples. *(Default)* | Most use cases — walking, cycling, automotive tracking. |
+  | {@link LocationFilterPolicy.Conservative} | **Strict filtering.** Strongly smooths data and rejects high-variance samples, prioritizing stability over responsiveness. | Analytics, long-term background logging, noise-sensitive applications. |
+
+  **Notes**
+
+  - This policy affects only the SDK’s *internal* filtering pipeline.
+    It does **not** modify the raw values returned to {@link BackgroundGeolocation.onLocation}.
+  - For more granular tuning, see {@link LocationFilter.trackingAccuracyThreshold},
+    {@link LocationFilter.maxImpliedSpeed}, and other {@link LocationFilter} fields.
+
+  **Examples**
+
+  Balanced default filtering:
+
+  ```ts
+  BackgroundGeolocation.ready({
+    geolocation: {
+      filter: {
+        policy: LocationFilterPolicy.Adjust
+      }
+    }
+  });
+  ```
+
+  No filtering — capture all raw locations:
+
+  ```ts
+  BackgroundGeolocation.ready({
+    geolocation: {
+      filter: {
+        policy: LocationFilterPolicy.PassThrough
+      }
+    }
+  });
+  ```
+
+  Maximum smoothing for analytics:
+
+  ```ts
+  BackgroundGeolocation.ready({
+    geolocation: {
+      filter: {
+        policy: LocationFilterPolicy.Conservative
+      }
+    }
+  });
+  ```
+
+  **See also**
+  - {@link GeoConfig.filter}
+  - {@link LocationFilter}
+  - {@link KalmanProfile}

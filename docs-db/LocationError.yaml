@@ -1,0 +1,17 @@
+id: LocationError
+source_file: background-geolocation-types/src/enums/LocationError.ts
+signature: export const LocationError = {
+categories:
+- Events
+description: |-
+  Error codes returned when the native location API fails to fetch a location.
+
+
+  | Code | Error |
+  |------|--------|
+  | `0`   | Location unknown |
+  | `1`   | Location permission denied |
+  | `2`   | Network error |
+  | `3`   | Attempt to initiate location-services in background with WhenInUse authorization |
+  | `408` | Location timeout |
+  | `499` | Location request cancelled |

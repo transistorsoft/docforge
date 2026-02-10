@@ -1,0 +1,42 @@
+id: HttpConfig.params
+source_file: background-geolocation-types/src/core/config/HttpConfig.ts
+signature: 'params?: Record<string, any>;'
+description: |-
+  Optional HTTP **`params`** appended to the JSON body of each outbound upload request.
+
+  These key/value pairs are merged into the payload sent to your server
+  (either at the root level or under `rootProperty`, if configured).
+
+  @example example-1
+
+  Example request body received by your server:
+
+  ```json
+  {
+    "location": {
+      "coords": {
+        "latitude": 45.51927,
+        "longitude": -73.61650
+        // ...
+      }
+    },
+    "user_id": 1234,      // <-- params merged into the payload
+    "device_id": "abc123"
+  }
+  ```
+
+  __See also:__ the **HTTP Guide** under {@link HttpConfig}.
+examples:
+  example-1:
+    title: Example 1
+    code:
+      ts: |-
+        BackgroundGeolocation.ready({
+          http: {
+            url: "https://my-server.com/locations",
+            params: {
+              user_id: 1234,
+              device_id: "abc123"
+            }
+          }
+        });

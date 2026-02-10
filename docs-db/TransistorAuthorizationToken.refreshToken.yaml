@@ -1,0 +1,4 @@
+id: TransistorAuthorizationToken.refreshToken
+source_file: background-geolocation-types/src/core/api/TransistorAuthorizationService.ts
+signature: 'refreshToken: string;'
+description: JWT refresh token used at the `refreshUrl` endpoint.

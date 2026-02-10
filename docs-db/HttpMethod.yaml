@@ -1,0 +1,8 @@
+id: HttpMethod
+source_file: background-geolocation-types/src/enums/HttpMethod.ts
+signature: export const HttpMethod = {
+categories:
+- Config
+description: |-
+  Allowed HTTP methods for uploading data.
+  Mirrors Flutter's HttpConfig.method and native support.

@@ -1,0 +1,6 @@
+id: GeofencesChangeEvent
+source_file: background-geolocation-types/src/core/events/GeofencesChangeEvent.ts
+signature: export interface GeofencesChangeEvent {
+categories:
+- Events
+description: Emitted by {@link BackgroundGeolocation.onGeofencesChange}.

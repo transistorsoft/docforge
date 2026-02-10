@@ -1,0 +1,4 @@
+id: Battery.level
+source_file: background-geolocation-types/src/core/data/Location.ts
+signature: 'level: number;'
+description: Battery level.  `0.0` = empty; `1.0` = full charge.

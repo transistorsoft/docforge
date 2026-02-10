@@ -1,0 +1,23 @@
+id: BackgroundGeolocation.stop
+source_file: background-geolocation-types/src/core/api/BackgroundGeolocation.ts
+signature: 'stop(): Promise<State>;'
+description: |-
+  Disable location and geofence monitoring.  This is the SDK's power **OFF** button.
+
+  @example example-1
+
+  __⚠️ Note:__
+  If you've configured a {@link AppConfig.schedule}, **`#stop`** will **not** halt the Scheduler.  You must explicitly {@link stopSchedule} as well:
+
+  @example example-2
+examples:
+  example-1:
+    title: Example 1
+    code:
+      ts: BackgroundGeolocation.stop();
+  example-2:
+    title: Example 2
+    code:
+      ts: |-
+        // Later when you want to stop the Scheduler (eg: user logout)
+        BackgroundGeolocation.stopSchedule();

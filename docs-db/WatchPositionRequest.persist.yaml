@@ -1,0 +1,4 @@
+id: WatchPositionRequest.persist
+source_file: background-geolocation-types/src/core/api/WatchPositionRequest.ts
+signature: 'persist?: boolean;'
+description: Defaults to `true` when plugin is `enabled`; `false`, otherwise.  Set `false` to disable persisting the retrieved Locations in the plugin's SQLite database.

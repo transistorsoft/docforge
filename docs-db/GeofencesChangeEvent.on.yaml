@@ -1,0 +1,4 @@
+id: GeofencesChangeEvent.on
+source_file: background-geolocation-types/src/core/events/GeofencesChangeEvent.ts
+signature: 'on: Geofence[];'
+description: Geofences that have just been activated.

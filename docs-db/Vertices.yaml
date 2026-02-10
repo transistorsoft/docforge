@@ -1,0 +1,7 @@
+id: Vertices
+source_file: background-geolocation-types/src/core/data/Geofence.ts
+signature: export type Vertices = [number, number][];
+description: |-
+  A list of vertices defining a Polygon geofence
+
+  See {@link Geofence.vertices}

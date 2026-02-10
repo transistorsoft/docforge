@@ -1,0 +1,4 @@
+id: GeofenceEvent.action
+source_file: background-geolocation-types/src/core/events/GeofenceEvent.ts
+signature: 'action: GeofenceAction;'
+description: 'Transition type: ''ENTER'' | ''EXIT'' | ''DWELL''.'

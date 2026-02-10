@@ -1,0 +1,162 @@
+id: BackgroundGeolocation
+source_file: background-geolocation-types/src/core/api/BackgroundGeolocation.ts
+signature: export interface BackgroundGeolocation extends BackgroundGeolocationAPI {
+categories:
+- Primary API
+description: |-
+  Primary BackgroundGeolocation API
+
+  __Overview__
+
+  The `BackgroundGeolocation` interface defines the **complete, strongly-typed API surface**
+  for Transistor Software’s Background Geolocation SDK.
+  This is the main entry-point used by all JavaScript adapters:
+
+  - React Native (`{{pluginName}}`)
+  - Capacitor
+  - Cordova
+
+  The API provides:
+
+  - **Configuration** via a single {@link Config} object composed of modular
+    sub-configs (`GeoConfig`, `HttpConfig`, `PersistenceConfig`, etc)
+  - **Lifecycle control** (`ready`, `start`, `stop`, `setConfig`, `reset`)
+  - **Location tracking** (motion-based tracking, `getCurrentPosition`,
+    `watchPosition`)
+  - **Geofencing** (`addGeofence`, `onGeofence`, etc)
+  - **Events subsystem** with fully-typed callbacks (`onLocation`,
+    `onMotionChange`, `onHttp`, `onProviderChange`, etc)
+  - **Native services** such as background-tasks, authorization workflows,
+    scheduling, and device-capability checks
+  - **Persistence + HTTP** via an internal SQLite buffer and optional
+    auto-upload system
+
+  __Typed Configuration (Compound Config)__
+
+  Instead of a large “flat” configuration object, the SDK uses a
+  *compound-configuration model*:
+
+  ```ts
+  import BackgroundGeolocation, {
+    Config,
+    GeoConfig,
+    HttpConfig
+  } from "{{pluginName}}";
+
+  const config: Config = {
+    geolocation: {
+      desiredAccuracy: BackgroundGeolocation.DesiredAccuracy.High,
+      distanceFilter: 20
+    },
+    http: {
+      url: "https://example.com/locations",
+      autoSync: true
+    },
+    persistence: {
+      maxDaysToPersist: 7
+    }
+  };
+
+  BackgroundGeolocation.ready(config);
+  ```
+
+  This structure ensures:
+
+  - **Clear separation of concerns**
+  - **Type-safe configuration**
+  - **Automatic backwards-compatibility** with legacy flat keys
+
+  __Typed Enum Namespaces__
+
+  All configuration flags that were previously “magic constants”
+  (e.g., `LOG_LEVEL_VERBOSE`, `DESIRED_ACCURACY_HIGH`) now live in
+  strongly-typed namespaces attached to the default export:
+
+  - {@link BackgroundGeolocation.LogLevel}
+  - {@link BackgroundGeolocation.DesiredAccuracy}
+  - {@link BackgroundGeolocation.PersistMode}
+  - {@link BackgroundGeolocation.NotificationPriority}
+  - {@link BackgroundGeolocation.Event}
+  - …and more
+
+  These can also be imported individually:
+
+  ```ts
+  import BackgroundGeolocation, { LogLevel } from "{{pluginName}}";
+
+  BackgroundGeolocation.ready({
+    logger: {
+      logLevel: LogLevel.Debug
+    }
+  });
+  ```
+
+  __Event System__
+
+  The SDK exposes a robust, typed event API:
+
+  ```ts
+  BackgroundGeolocation.onLocation((location) => {
+    console.log("New location:", location);
+  });
+
+  BackgroundGeolocation.onMotionChange((event) => {
+    console.log("Device is moving?", event.isMoving);
+  });
+  ```
+
+  All events return **Subscription** objects which must be removed when no longer
+  needed:
+
+  ```ts
+  const sub = BackgroundGeolocation.onHttp((e) => { ... });
+  sub.remove();
+  ```
+
+  __Native Lifecycle Requirements__
+
+  On both iOS and Android, `BackgroundGeolocation.ready(config)` must be called
+  **exactly once per app launch**, before calling `start()`.
+  The SDK automatically restores its last-known configuration from persistent
+  storage after first install.
+
+  __Philosophy of Operation__
+
+  Transistorsoft’s tracking engine is built around:
+
+  - **Motion-based state transitions** (stationary ↔ moving)
+  - **Aggressive tracking only when moving**
+  - **Energy-efficient passive monitoring when stationary**
+  - **Reliable persistence via SQLite**
+  - **Automatic retries + batching** for HTTP uploads
+
+  Combined, this enables *battery-efficient*, *high-quality* background tracking
+  across iOS and Android.
+
+  __Capabilities__
+
+  - High-frequency tracking while the device is moving
+  - Zero-movement battery preservation
+  - Geofence monitoring at scale (thousands of geofences)
+  - Offline storage + sync when network is restored
+  - Background tasks for long-running operations
+  - Authorization state + system diagnostics
+
+  __Getting Started__
+
+  ```ts
+  import BackgroundGeolocation from "{{pluginName}}";
+
+  const state = await BackgroundGeolocation.ready({
+    geolocation: { distanceFilter: 10 },
+    http: { url: "https://example.com/locations", autoSync: true }
+  });
+
+  if (!state.enabled) {
+    await BackgroundGeolocation.start();
+  }
+  ```
+
+  Once `start()` is called, the SDK begins operating according to your
+  configuration and continues running—even in the background—until you call
+  `stop()`.

@@ -1,0 +1,12 @@
+id: PersistenceConfig.maxRecordsToPersist
+source_file: background-geolocation-types/src/core/config/PersistenceConfig.ts
+signature: 'maxRecordsToPersist?: number;'
+description: |-
+  Maximum number of records the SDK may retain in its on-device SQLite
+  database.
+
+  A value of `-1` (default) means **no limit**. When a limit is set and the
+  number of stored records would exceed this value, the oldest records are
+  purged to make room for the newest.
+
+  See {@link HttpEvent} for details on upload behavior.

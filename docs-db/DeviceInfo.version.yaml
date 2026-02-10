@@ -1,0 +1,10 @@
+id: DeviceInfo.version
+source_file: background-geolocation-types/src/core/data/DeviceInfo.ts
+signature: 'version: string;'
+description: |-
+  OS Version (human readable string).
+
+  Examples:
+  - "18.1"
+  - "14"
+  - "14.1.1"

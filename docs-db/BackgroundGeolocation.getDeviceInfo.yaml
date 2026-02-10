@@ -1,0 +1,13 @@
+id: BackgroundGeolocation.getDeviceInfo
+source_file: background-geolocation-types/src/core/api/BackgroundGeolocation.ts
+signature: 'getDeviceInfo(): Promise<DeviceInfo>;'
+description: |-
+  Returns the device information.
+  @example example-1
+examples:
+  example-1:
+    title: Example 1
+    code:
+      ts: |-
+        const deviceInfo = await BackgroundGeolocation.getDeviceInfo();
+        console.log(deviceInfo);

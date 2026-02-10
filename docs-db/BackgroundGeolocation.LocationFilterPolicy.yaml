@@ -1,0 +1,21 @@
+id: BackgroundGeolocation.LocationFilterPolicy
+source_file: background-geolocation-types/src/core/api/BackgroundGeolocation.ts
+signature: 'LocationFilterPolicy: typeof import(''../../enums/LocationFilterPolicy'').LocationFilterPolicy;'
+description: |-
+  __LocationFilterPolicy__
+  Selects the filtering engine policy for noise-reduction and smoothing.
+  Used by GeoConfig.locationFilter.
+
+  @example example-1
+  @readonly
+examples:
+  example-1:
+    title: Example 1
+    code:
+      ts: |-
+        BackgroundGeolocation.ready({
+          geolocation: {
+            filter: {
+              policy: BackgroundGeolocation.LocationFilterPolicy.Adjust
+            }
+        });

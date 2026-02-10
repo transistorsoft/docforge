@@ -1,0 +1,4 @@
+id: Logger.ORDER_ASC
+source_file: background-geolocation-types/src/core/api/Logger.ts
+signature: 'readonly ORDER_ASC: 1;'
+description: Sort ascending when querying logs. Mirrors {@link Logger.ORDER_ASC} constant.

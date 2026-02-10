@@ -1,0 +1,8 @@
+id: BackgroundGeolocation.playSound
+source_file: background-geolocation-types/src/core/api/BackgroundGeolocation.ts
+signature: 'playSound(soundId: number | string): void;'
+description: |-
+  Play a system sound.
+
+  - **iOS**: provide a numeric SystemSoundID.
+  - **Android**: provide a string sound-name.

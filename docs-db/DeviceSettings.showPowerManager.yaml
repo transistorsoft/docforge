@@ -1,0 +1,8 @@
+id: DeviceSettings.showPowerManager
+source_file: background-geolocation-types/src/core/api/DeviceSettings.ts
+signature: 'showPowerManager(): Promise<DeviceSettingsRequest>;'
+description: |-
+  Prepare a request to show a vendor-specific “Power Manager” screen (Huawei, Xiaomi, Vivo, etc).
+
+  Does **not** immediately redirect — returns a {@link DeviceSettingsRequest} first.
+  Not all vendors/versions implement this screen; callers should `catch` errors.

@@ -1,0 +1,6 @@
+id: DeviceSettings.show
+source_file: background-geolocation-types/src/core/api/DeviceSettings.ts
+signature: 'show(request: DeviceSettingsRequest): Promise<boolean>;'
+description: |-
+  Execute a previously prepared {@link DeviceSettingsRequest} to actually show the screen.
+  Resolves `true` if the redirect was attempted.

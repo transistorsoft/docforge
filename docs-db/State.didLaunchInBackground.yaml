@@ -1,0 +1,7 @@
+id: State.didLaunchInBackground
+source_file: background-geolocation-types/src/core/api/State.ts
+signature: 'didLaunchInBackground: boolean;'
+description: |-
+  iOS only. `true` when the app was launched in the background due to a
+  background event (fetch, geofence exit, stationary geofence exit).
+  Always `false` on Android.

@@ -1,0 +1,48 @@
+id: NotificationConfig
+source_file: background-geolocation-types/src/core/config/NotificationConfig.ts
+signature: export interface NotificationConfig {
+categories:
+- Config
+description: |-
+  __Android foreground notification__
+
+  Android requires a persistent notification whenever the SDK runs its
+  foreground service. This notification is shown in the system status bar
+  while tracking is active.
+
+  ![](https://dl.dropbox.com/s/acuhy5cu4p7uofr/android-foreground-service-default.png?dl=1)
+
+  Configure this via {@link NotificationConfig} on {@link AppConfig.notification}.
+
+  @example example-1
+
+  __Custom Notification Layouts__
+
+  Supply a custom Android Layout XML file using {@link NotificationConfig.layout}.
+  This allows complete control over the appearance of the foreground notification.
+
+  See the guide:
+  **Android Custom Notification Layout** — (github:wiki/Android-Custom-Notification-Layout)
+examples:
+  example-1:
+    title: Example 1
+    code:
+      ts: |-
+        BackgroundGeolocation.ready({
+          app: {
+            notification: {
+              title: "The Title",
+              text: "The Text"
+            }
+          }
+        });
+
+        // Update notification fields at runtime.
+        // Only changed keys must be provided; existing values persist.
+        BackgroundGeolocation.setConfig({
+          app: {
+            notification: {
+              title: "The New Title",
+            }
+          }
+        });

@@ -1,0 +1,6 @@
+id: Event
+source_file: background-geolocation-types/src/enums/Event.ts
+signature: export const Event = {
+categories:
+- Events
+description: Supported event names emitted by the SDK.

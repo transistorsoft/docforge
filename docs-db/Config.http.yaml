@@ -1,0 +1,4 @@
+id: Config.http
+source_file: background-geolocation-types/src/core/config/Config.ts
+signature: 'http?: HttpConfig;'
+description: HTTP configuration.

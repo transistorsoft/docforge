@@ -1,0 +1,10 @@
+id: Geofence.entryState
+source_file: background-geolocation-types/src/core/data/Geofence.ts
+signature: 'readonly entryState?: number;          // 0=unknown, 1=inside, 2=outside'
+description: |-
+  Runtime state:  The current entry-state of the geofence.
+
+  - 0 = OUTSIDE
+  - 1 = INSIDE
+
+  ⚠️ Readonly

@@ -1,0 +1,4 @@
+id: BackgroundGeolocation.logger
+source_file: background-geolocation-types/src/core/api/BackgroundGeolocation.ts
+signature: 'readonly logger: Logger;'
+description: '{@link Logger} API'

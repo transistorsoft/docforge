@@ -1,0 +1,12 @@
+id: NotificationPriority
+source_file: background-geolocation-types/src/enums/NotificationPriority.ts
+signature: export const NotificationPriority = {
+categories:
+- Config
+description: |-
+  Defines the priority / visibility of the Android foreground-service notification.
+
+  This affects how the notification appears in the status bar and how strongly
+  the OS ranks it among other notifications.
+
+  Mirrors Flutter’s `NotificationPriority` enum.

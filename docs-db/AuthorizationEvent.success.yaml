@@ -1,0 +1,4 @@
+id: AuthorizationEvent.success
+source_file: background-geolocation-types/src/core/events/AuthorizationEvent.ts
+signature: 'success: boolean;'
+description: True when the authorization request succeeded.

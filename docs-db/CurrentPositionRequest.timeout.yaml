@@ -1,0 +1,4 @@
+id: CurrentPositionRequest.timeout
+source_file: background-geolocation-types/src/core/api/CurrentPositionRequest.ts
+signature: 'timeout?: number;'
+description: 'Location-timeout in `seconds`.  Default: `30`.  If the timeout expires before a [[Location]] is retrieved, a [[LocationError]] will fire.'

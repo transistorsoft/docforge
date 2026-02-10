@@ -1,0 +1,4 @@
+id: BackgroundGeolocation.deviceSettings
+source_file: background-geolocation-types/src/core/api/BackgroundGeolocation.ts
+signature: 'readonly deviceSettings: DeviceSettings;'
+description: '{@link DeviceSettings} API'

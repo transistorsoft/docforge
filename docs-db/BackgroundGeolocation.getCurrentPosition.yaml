@@ -1,0 +1,37 @@
+id: BackgroundGeolocation.getCurrentPosition
+source_file: background-geolocation-types/src/core/api/BackgroundGeolocation.ts
+signature: 'getCurrentPosition(options?: CurrentPositionRequest): Promise<Location>;'
+description: |-
+  Retrieves the current {@link Location}.
+
+  This method instructs the native code to fetch exactly one location using maximum power & accuracy.  The native code will persist the fetched location to
+  its SQLite database just as any other location in addition to POSTing to your configured {@link HttpConfig.url}.
+  If an error occurs while fetching the location, `catch` will be provided with an {@link LocationError}.
+
+
+  ### Options
+
+  See {@link CurrentPositionRequest}.
+
+  ### Error Codes
+
+  See {@link LocationError}.
+
+  @example example-1
+  __⚠️ Note:__
+  - While `getCurrentPosition` will receive only **one** {@link Location}, the plugin *does* request **multiple** location samples which will all be provided
+  to the {@link onLocation} event-listener.  You can detect these samples via {@link Location.sample} `== true`.
+examples:
+  example-1:
+    title: Example 1
+    code:
+      ts: |-
+        let location = await BackgroundGeolocation.getCurrentPosition({
+          timeout: 30,          // 30 second timeout to fetch location
+          maximumAge: 5000,     // Accept the last-known-location if not older than 5000 ms.
+          desiredAccuracy: 10,  // Try to fetch a location with an accuracy of `10` meters.
+          samples: 3,           // How many location samples to attempt.
+          extras: {             // Custom meta-data.
+            "route_id": 123
+          }
+        });

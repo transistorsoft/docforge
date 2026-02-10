@@ -1,0 +1,10 @@
+id: LocationFilter.burstWindow
+source_file: background-geolocation-types/src/core/config/LocationFilter.ts
+signature: 'burstWindow?: number;'
+description: |-
+  Duration (in seconds) of each burst window used for averaging samples.
+
+  The plugin groups all locations received within this time window into a
+  single averaged output sample.
+
+  **Default:** `10` seconds.

@@ -1,0 +1,8 @@
+id: BackgroundGeolocation.ActivityType
+source_file: background-geolocation-types/src/core/api/BackgroundGeolocation.ts
+signature: 'ActivityType: typeof import(''../../enums/ActivityType'').ActivityType;'
+description: |-
+  __ActivityType__
+  iOS-only: Specifies the type of user activity (AutomotiveNavigation,
+  Fitness, OtherNavigation, etc).
+  Used by {@link GeoConfig.activityType}.

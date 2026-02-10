@@ -1,0 +1,4 @@
+id: PermissionRationale.positiveAction
+source_file: background-geolocation-types/src/core/config/AppConfig.ts
+signature: 'positiveAction?: string;'
+description: The text to display on the *positive action* button.

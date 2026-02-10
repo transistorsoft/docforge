@@ -1,0 +1,4 @@
+id: AuthorizationEvent.error
+source_file: background-geolocation-types/src/core/events/AuthorizationEvent.ts
+signature: 'error: string | null;'
+description: Error message when success is false; otherwise null.

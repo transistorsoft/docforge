@@ -1,0 +1,40 @@
+id: Location.odometer_error
+source_file: background-geolocation-types/src/core/data/Location.ts
+signature: 'odometer_error: number;'
+description: |-
+  Accumulated **odometer drift**, in meters.
+
+  __ℹ️ Why does this exist?__
+  - The SDK maintains a continuously increasing {@link odometer} value by integrating distance between recorded locations.
+  - When GNSS accuracy is degraded (tunnels, downtown canyons, indoor / underground environments), distance calculations can accumulate **drift**.
+  - The `odometer_error` value tells you *how much uncertainty* has accumulated in the current odometer estimate.
+
+  __How to use it:__
+  - Treat this as a “confidence interval” for {@link odometer}.
+    For example, if `odometer = 12000` and `odometer_error = 40`, the *true* travelled distance is likely within **±40 meters** of the reported value.
+  - Resetting or setting a new {@link odometer} value automatically resets `odometer_error` to `0`.
+  - Values typically remain low (e.g., < 10m) during good GPS conditions, but can grow during:
+    - long tunnels
+    - heavy multipath environments
+    - extended indoor tracking
+
+  __Best practice:__
+  - Display `odometer` normally to end-users.
+  - Use `odometer_error` internally for data-quality scoring, filtering, or highlighting low-accuracy segments.
+
+  @example example-1
+  ℹ️
+  - {@link odometer}
+examples:
+  example-1:
+    title: Example 1
+    code:
+      ts: |-
+        BackgroundGeolocation.onLocation(location => {
+          console.log("Odometer:", location.odometer);
+          console.log("Odometer drift:", location.odometer_error);
+
+          if (location.odometer_error > 50) {
+            console.warn("High odometer drift — signal quality degraded");
+          }
+        });

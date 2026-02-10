@@ -1,0 +1,4 @@
+id: PermissionRationale.title
+source_file: background-geolocation-types/src/core/config/AppConfig.ts
+signature: 'title?: string;'
+description: Title for the Android background location permission dialog.

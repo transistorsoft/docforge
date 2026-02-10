@@ -1,0 +1,8 @@
+id: AuthorizationStrategy
+source_file: background-geolocation-types/src/enums/AuthorizationStrategy.ts
+signature: export const AuthorizationStrategy = {
+categories:
+- Config
+description: |-
+  Supported authorization strategies.
+  Mirrors Flutter's Authorization.strategy values.

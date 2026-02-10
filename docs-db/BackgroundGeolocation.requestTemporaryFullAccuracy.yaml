@@ -1,0 +1,52 @@
+id: BackgroundGeolocation.requestTemporaryFullAccuracy
+source_file: background-geolocation-types/src/core/api/BackgroundGeolocation.ts
+signature: 'requestTemporaryFullAccuracy(purposeKey: string): Promise<AccuracyAuthorization>;'
+description: |-
+  __`[iOS 14+]`__ iOS 14 has introduced a new __`[Precise: On]`__ switch on the location authorization dialog allowing users to disable high-accuracy location.
+
+  The method [`requestTemporaryFullAccuracy` (Apple docs)](https://developer.apple.com/documentation/corelocation/cllocationmanager/3600217-requesttemporaryfullaccuracyauth?language=objc) will allow you to present a dialog to the user requesting temporary *full accuracy* for the lifetime of this application run (until terminate).
+
+  ![](https://dl.dropbox.com/s/dj93xpg51vspqk0/ios-14-precise-on.png?dl=1)
+
+  __Configuration &mdash; `Info.plist`__
+
+  In order to use this method, you must configure your __`Info.plist`__ with the `Dictionary` key:
+  __`Privacy - Location Temporary Usage Description Dictionary`__
+
+  ![](https://dl.dropbox.com/s/52f5lnjc4d9g8w7/ios-14-Privacy-Location-Temporary-Usage-Description-Dictionary.png?dl=1)
+
+  The keys of this `Dictionary` (eg: `Delivery`) are supplied as the first argument to the method.  The `value` will be printed on the dialog shown to the user, explaing the purpose of your request for full accuracy.
+
+  If the dialog fails to be presented, an error will be thrown:
+  - The Info.plist file doesn’t have an entry for the given purposeKey value.
+  - The app is already authorized for full accuracy.
+  - The app is in the background.
+
+  ![](https://dl.dropbox.com/s/8cc0sniv3pvpetl/ios-14-requestTemporaryFullAccuracy.png?dl=1)
+
+  __Note:__ Android and older versions of iOS `< 14` will return {@link AccuracyAuthorization.Full}.
+
+  @example example-1
+
+  __See also:__
+  - {@link ProviderChangeEvent.accuracyAuthorization}.
+  - [What's new in iOS 14 `CoreLocation`](https://levelup.gitconnected.com/whats-new-with-corelocation-in-ios-14-bd28421c95c4)
+examples:
+  example-1:
+    title: Example 1
+    code:
+      ts: |-
+        BackgroundGeolocation.onProviderChange((event) => {
+          if (event.accuracyAuthorization == BackgroundGeolocation.ACCURACY_AUTHORIZATION_REDUCED) {
+            // Supply "Purpose" key from Info.plist as 1st argument.
+            BackgroundGeolocation.requestTemporaryFullAccuracy("Delivery").then((accuracyAuthorization) => {
+              if (accuracyAuthorization == BackgroundGeolocation.ACCURACY_AUTHORIZATION_FULL) {
+                console.log('[requestTemporaryFullAccuracy] GRANTED: ', accuracyAuthorization);
+              } else {
+                console.log('[requestTemporaryFullAccuracy] DENIED: ', accuracyAuthorization);
+              }
+            }).catch((error) => {
+              console.warn("[requestTemporaryFullAccuracy] FAILED TO SHOW DIALOG: ", error);
+            });
+          }
+        });

@@ -1,0 +1,37 @@
+id: AuthorizationConfig.refreshPayload
+source_file: background-geolocation-types/src/core/config/AuthorizationConfig.ts
+signature: refreshPayload?:Record<string,string>;
+description: |-
+  Refresh payload will be encoded into the FORM POST to the {@link refreshUrl} when requesting a new {@link accessToken} after expiration.
+
+  You *must* provide one field-template which will represent your "refresh token" using the value: __`{refreshToken}`__.  The SDK will
+  _automatically_ replace this simple template with the configured {@link refreshToken}.
+
+  @example example-1
+
+  with the configuration above, a **`curl`** representation of the SDK's FORM POST, might look like this:
+  ```bash
+  $ curl -X POST \
+    -F 'my_refresh_token=smTsfaspfgaadsfgqZerUt0wueflasdfkaxjdfeKIacb' \
+    -F 'grant_type=refresh_token' \
+    -F 'foo=another arbitrary field' \
+    https://auth.your.server.com/tokens
+  ```
+examples:
+  example-1:
+    title: Example 1
+    code:
+      ts: |-
+        BackgroundGeolocation.ready({
+          authorization: {
+            strategy: "JWT",
+            accessToken: "XXX.YYY.ZZZ",
+            refreshUrl: "https://auth.your.server.com/tokens",
+            refreshToken: "smTsfaspfgaadsfgqZerUt0wueflasdfkaxjdfeKIacb",
+            refreshPayload: {
+              my_refresh_token: "{refreshToken}",
+              grant_type: "refresh_token",
+              foo: "another arbitrary field"
+            }
+          }
+        });

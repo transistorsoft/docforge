@@ -1,0 +1,19 @@
+id: GeoConfig.stopAfterElapsedMinutes
+source_file: background-geolocation-types/src/core/config/GeoConfig.ts
+signature: 'stopAfterElapsedMinutes?: number;'
+description: |-
+  Automatically {@link BackgroundGeolocation.stop} tracking after *x* minutes.
+
+  The plugin can optionally automatically {@link BackgroundGeolocation.stop} after some number of minutes elapses after the {@link BackgroundGeolocation.start} method was called.
+
+  @example example-1
+examples:
+  example-1:
+    title: Example 1
+    code:
+      ts: |-
+        BackgroundGeolocation.ready({
+          stopAfterElapsedMinutes: 30
+        }).then((state) => {
+          BackgroundGeolocation.start();  // <-- plugin will automatically #stop in 30 minutes
+        });

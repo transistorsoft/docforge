@@ -1,0 +1,6 @@
+id: PersistenceConfig.locationsOrderDirection
+source_file: background-geolocation-types/src/core/config/PersistenceConfig.ts
+signature: 'locationsOrderDirection?: ''ASC'' | ''DESC'';'
+description: |-
+  Sort order for persisted locations.
+  `'ASC'` = oldest first; `'DESC'` = newest first.

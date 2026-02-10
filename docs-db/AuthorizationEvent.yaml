@@ -1,0 +1,6 @@
+id: AuthorizationEvent
+source_file: background-geolocation-types/src/core/events/AuthorizationEvent.ts
+signature: export interface AuthorizationEvent {
+categories:
+- Events
+description: Emitted by {@link BackgroundGeolocation.onAuthorization}.

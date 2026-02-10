@@ -1,0 +1,4 @@
+id: Location.is_moving
+source_file: background-geolocation-types/src/core/data/Location.ts
+signature: 'is_moving: boolean;'
+description: '`true` if location was recorded while plugin is in the *moving* state.'

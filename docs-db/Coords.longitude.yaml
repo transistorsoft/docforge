@@ -1,0 +1,4 @@
+id: Coords.longitude
+source_file: background-geolocation-types/src/core/data/Location.ts
+signature: 'longitude: number;'
+description: Longitude of the location.

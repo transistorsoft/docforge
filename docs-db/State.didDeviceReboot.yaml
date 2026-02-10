@@ -1,0 +1,4 @@
+id: State.didDeviceReboot
+source_file: background-geolocation-types/src/core/api/State.ts
+signature: 'didDeviceReboot: boolean;'
+description: Indicates if the app was launched after a device reboot.

@@ -1,0 +1,10 @@
+id: DeviceSettings.showIgnoreBatteryOptimizations
+source_file: background-geolocation-types/src/core/api/DeviceSettings.ts
+signature: 'showIgnoreBatteryOptimizations(): Promise<DeviceSettingsRequest>;'
+description: |-
+  Prepare a request to show Android’s *Ignore Battery Optimizations* settings screen.
+
+  Does **not** immediately redirect — returns a {@link DeviceSettingsRequest} first so you can
+  decide whether to prompt the user (eg: avoid annoying them if `seen === true`).
+
+  ⚠️ On some devices/OS versions, this screen may not exist; callers should `catch` errors.

@@ -1,0 +1,7 @@
+id: Location.age
+source_file: background-geolocation-types/src/core/data/Location.ts
+signature: 'age: number;'
+description: |-
+  The age of the location in milliseconds, relative to the Device system-time when the location was received.
+  For example, if the reported `age` is `10000`, that location was recorded 10s ago, relative to the system-time.
+  `location.timestamp` + `location.age` = Device system-time when location was recorded.

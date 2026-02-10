@@ -1,0 +1,6 @@
+id: ProviderChangeEvent
+source_file: background-geolocation-types/src/core/events/ProviderChangeEvent.ts
+signature: export interface ProviderChangeEvent {
+categories:
+- Events
+description: Emitted by {@link BackgroundGeolocation.onProviderChange}.

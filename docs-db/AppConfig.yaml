@@ -1,0 +1,108 @@
+id: AppConfig
+source_file: background-geolocation-types/src/core/config/AppConfig.ts
+signature: export interface AppConfig {
+categories:
+- Config
+description: |-
+  Application & lifecycle configuration.
+
+  `AppConfig` groups options that control how the SDK integrates with your app’s
+  lifecycle: start/stop behavior on terminate and reboot, headless/background
+  behavior, periodic heartbeats, scheduler windows, foreground notifications, and
+  the Android background-permission rationale dialog.
+
+  Use this class via {@link Config.app}.
+
+  ```ts
+  BackgroundGeolocation.ready({
+    app: {
+      stopOnTerminate: false,
+      startOnBoot: true
+    }
+  });
+  ```
+
+  __What belongs in `AppConfig`?__
+
+  - Whether tracking **stops on app terminate**: see {@link AppConfig.stopOnTerminate}.
+  - Whether tracking **starts after device reboot**: see {@link AppConfig.startOnBoot}.
+  - Android **headless** mode: see {@link AppConfig.enableHeadless}.
+  - Periodic **heartbeat** callback: see {@link AppConfig.heartbeatInterval}.
+  - **Scheduler** windows for automated start/stop: see {@link AppConfig.schedule} and {@link AppConfig.scheduleUseAlarmManager}.
+  - Foreground-service **notification** options (Android): see {@link AppConfig.notification}.
+  - Background-permission **rationale** for Android 10+: see {@link AppConfig.backgroundPermissionRationale}.
+  - iOS background **preventSuspend** flag for heartbeat support: see {@link AppConfig.preventSuspend}.
+
+  __Platform notes__
+
+  **iOS**
+  - With {@link AppConfig.stopOnTerminate} set to `false`, the SDK creates a *stationary geofence* and iOS will relaunch
+    your app in the background when the device exits that region.
+  - {@link AppConfig.preventSuspend} is required for heartbeat events and consumes additional battery — use with caution.
+
+  **Android**
+  - With {@link AppConfig.enableHeadless} set to `true`, the native background-service continues working even after the
+    JS/UI process is killed. Pair this with {@link HttpConfig.url} to ensure continuous uploads.
+  - The **scheduler** uses Android’s `AlarmManager` by default; control this with {@link AppConfig.scheduleUseAlarmManager}.
+
+  @example example-1
+
+  Update later at runtime:
+
+  ```ts
+  await BackgroundGeolocation.setConfig({
+    app: {
+      heartbeatInterval: 120 // slow down heartbeats
+    }
+  });
+  ```
+
+  __Migration from legacy `Config` properties__
+
+  The following legacy properties are **deprecated** on {@link Config} and should now
+  be supplied via `Config.app`:
+
+  - `Config.stopOnTerminate`
+  - `Config.startOnBoot`
+  - `Config.enableHeadless`
+  - `Config.heartbeatInterval`
+  - `Config.schedule`
+  - `Config.scheduleUseAlarmManager`
+  - `Config.notification`
+  - `Config.backgroundPermissionRationale`
+  - `Config.preventSuspend`
+examples:
+  example-1:
+    title: Configure once at startup
+    code:
+      ts: |-
+        import BackgroundGeolocation, {
+          type Config,
+          type AppConfig,
+          PermissionRationale,
+          Notification
+        } from 'react-native-background-geolocation';
+
+        const config: Config = {
+          app: {
+            stopOnTerminate: false,
+            startOnBoot: true,
+            enableHeadless: true,
+            heartbeatInterval: 60,
+            backgroundPermissionRationale: {
+              title: "Allow MyApp to access this device's location even when closed.",
+              message: "This app collects location data to record your trips and mileage.",
+              positiveAction: 'Change to "{backgroundPermissionOptionLabel}"',
+              negativeAction: 'Cancel'
+            },
+            notification: {
+              title: 'Background Geolocation',
+              text: 'Tracking location',
+              smallIcon: 'mipmap/ic_launcher'
+            },
+            schedule: ['1-5 09:00-17:00'], // Weekdays 9–5
+            scheduleUseAlarmManager: true
+          }
+        };
+
+        await BackgroundGeolocation.ready(config);

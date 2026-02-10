@@ -1,0 +1,20 @@
+id: BackgroundGeolocation.changePace
+source_file: background-geolocation-types/src/core/api/BackgroundGeolocation.ts
+signature: 'changePace(isMoving: boolean): Promise<State>;'
+description: |-
+  Manually toggles the SDK's **motion state** between **stationary** and **moving**.
+
+  When provided a value of  **`true`**, the plugin will engage location-services and begin aggressively tracking the device's location *immediately*,
+  bypassing stationary monitoring.
+
+  If you were making a "Jogging" application, this would be your **`[Start Workout]`** button to immediately begin location-tracking.  Send **`false`**
+  to turn **off** location-services and return the plugin to the **stationary** state.
+
+  @example example-1
+examples:
+  example-1:
+    title: Example 1
+    code:
+      ts: |-
+        BackgroundGeolocation.changePace(true);  // <-- Location-services ON ("moving" state)
+        BackgroundGeolocation.changePace(false); // <-- Location-services OFF ("stationary" state)

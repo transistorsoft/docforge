@@ -1,0 +1,6 @@
+id: Battery
+source_file: background-geolocation-types/src/core/data/Location.ts
+signature: export interface Battery {
+categories:
+- Data
+description: This object is attached to instances of {@link Location.battery}.

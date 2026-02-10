@@ -1,0 +1,4 @@
+id: GeofencesChangeEvent.off
+source_file: background-geolocation-types/src/core/events/GeofencesChangeEvent.ts
+signature: 'off: string[];'
+description: Identifiers of geofences that have just been de-activated (or removed).

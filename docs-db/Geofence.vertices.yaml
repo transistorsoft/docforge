@@ -1,0 +1,54 @@
+id: Geofence.vertices
+source_file: background-geolocation-types/src/core/data/Geofence.ts
+signature: 'vertices?: Vertices;'
+description: |-
+  Optional: a list of vertices (`[ [lat, lng],...]`) defining a Polygon geofence.  By default, geofences are circular.
+
+  ℹ️ __*Polygon Geofencing*__ is [sold as a separate add-on](https://shop.transistorsoft.com/products/polygon-geofencing) (fully functional in *DEBUG* builds).
+
+  When defining a polygon geofence, you do **not** provide {@link latitude}, {@link longitude} or {@link radius} &mdash; those will be automatically calculated based upon the geometry of the polygon.
+
+  The following image shows polygon geofences on a map:
+
+  ![](https://dl.dropbox.com/scl/fi/xzf6yau5wcg1az8fy0lbm/geofencing-polygons-on-map.PNG?rlkey=e82h494msbgt8ngu4s2pjwemb&dl=1)
+
+  The *blue polygons* represent the *actual* polygon geofences and the containing *green circles* are traditional circular geofences provided by the native *iOS/Android* Geofencing APIs.
+  The background-geolocation SDK automatically calculates the containing, native cirular geofence by solving the [*minimum enclosing circle*](https://en.wikipedia.org/wiki/Smallest-circle_problem)
+  for the given {@link vertices}.  This is why you do not provide {@link latitude}, {@link longitude} and {@link radius}.
+
+  - When the device *enters* the containing circular geofence, the SDK uses that as a signal that the device is approaching a polygon.  At this moment, the SDK begins aggressively monitoring the location to perform "hit-testing" upon the polygon using a fast algorithm implemented with C++ code.
+  - When the device *exits* the containing circular geofence, that's the SDK's signal for it to *cease* monitoring that polygon.
+
+  @example example-1
+
+  - __Entering / exiting a *cross-shaped* polygon geofence:__
+
+  ![](https://dl.dropbox.com/scl/fi/iorrnrm0zno91jtg0ctse/polygon-geofencing-cross.PNG?rlkey=p4kufqhxgw9jrmuz4vkqisprw&dl=1)
+
+  - __Entering / exiting a park:__
+
+  ![](https://dl.dropbox.com/scl/fi/qvg9n3s5iacje5szgcqfv/polygon-geofencing-parc-outremont.PNG?rlkey=c6iax7a19db2v6xdxf18k2a7k&dl=1)
+
+  - __Entering / exiting a diamond-shaped polygon:__
+
+  ![](https://dl.dropbox.com/scl/fi/29m3xwb7tm0532mthgjfy/polygon-geofencing-diamond.PNG?rlkey=9ucc5hs7460ig7226iutas4cw&dl=1)
+
+  - __Designing a polygon geofence around a park using the demo app:__
+
+  ![](https://dl.dropbox.com/scl/fi/806mxnz9cdfd4ely8uwfe/polygon-geofencing-parc-lafontaine.PNG?rlkey=yrlbfisx8o5itfz6h0d0inel1&dl=1)
+examples:
+  example-1:
+    title: Example 1
+    code:
+      ts: |-
+        BackgroundGeolocation.addGeofence({
+          identifier: 'Home',
+          notifyOnEntry: true,
+          notifyOnExit: true,
+          vertices: [
+            [45.518947279987714, -73.6049889209514],  // <-- [lat, lng]
+            [45.5182711292279, -73.60338649600598],
+            [45.517082240237634, -73.60432670908212],
+            [45.51774871402813, -73.60604928622278]
+          ]
+        });

@@ -1,0 +1,156 @@
+id: AppConfig.schedule
+source_file: background-geolocation-types/src/core/config/AppConfig.ts
+signature: 'schedule?: string[];'
+description: |-
+  Configures a cron-like automated schedule telling the SDK when to
+  {@link BackgroundGeolocation.start | start} and
+  {@link BackgroundGeolocation.stop | stop} tracking.
+
+  @example example-1
+
+  - Times are in **24h format**.
+  - `DAY` uses **Locale.US** numbering: **Sunday = 1**, **Saturday = 7**.
+  - You may provide:
+    - a single day: `"1"`
+    - a comma-separated list: `"2,4,6"`
+    - a range: `"2-6"`
+
+  @example example-2
+
+  **Literal Dates**
+
+  The schedule may use literal date ranges.
+
+  ```txt
+  "yyyy-mm-dd HH:mm-HH:mm"
+  ```
+
+  @example example-3
+
+  Or specify distinct start **and** stop dates:
+
+  ```txt
+  "yyyy-mm-dd-HH:mm yyyy-mm-dd-HH:mm"
+  ```
+
+  @example example-4
+
+  **Scheduling Geofences-Only vs Location + Geofences**
+
+  Append `geofence` or `location` to explicitly choose a tracking mode:
+
+  ```ts
+  BackgroundGeolocation.ready({
+    app: {
+      schedule: [
+        "1-7 09:00-17:00 location",
+        "1-7 18:00-12:00 geofence"
+      ]
+  }
+  ```
+
+  Since `location` is the default mode, it may be omitted:
+
+  ```ts
+  BackgroundGeolocation.ready({
+    app: {
+      schedule: [
+        "1-7 09:00-17:00 location",
+        "1-7 18:00-12:00 geofence"
+      ]
+    }
+  });
+  ```
+
+  Since `location` is the default mode, it may be omitted:
+    `"1-7 13:00-14:00 geofence"`
+
+  **iOS**
+
+  - iOS **cannot** evaluate the schedule *exactly* at the configured time.
+    Evaluation occurs only when the app is awakened.
+  - When in a scheduled **off** period, iOS continues monitoring low-power
+    **Significant Location Changes (SLC)**.
+    This guarantees periodic evaluation, especially when
+    `{@link AppConfig.stopOnTerminate}` is `false` and the OS halts
+    traditional Background Fetch.
+  - Schedule evaluation occurs when:
+    - the app pauses/resumes,
+    - any location is recorded (including SLC),
+    - a Background Fetch event fires.
+
+  **Android**
+
+  - Uses `AlarmManager.setExactAndAllowWhileIdle`, typically evaluating
+    on-the-minute.
+
+  **ℹ️ See also**
+  - {@link BackgroundGeolocation.startSchedule}
+  - {@link BackgroundGeolocation.stopSchedule}
+examples:
+  example-1:
+    title: Example 1
+    code:
+      ts: '"{DAY(s)} {START_TIME}-{END_TIME}"'
+  example-2:
+    title: Example 2
+    code:
+      ts: |-
+        BackgroundGeolocation.ready({
+          app: {
+            schedule: [
+              "1 17:30-21:00",     // Sunday: 5:30pm–9pm
+              "2-6 09:00-17:00",   // Mon–Fri: 9am–5pm
+              "2,4,6 20:00-00:00", // Mon, Wed, Fri: 8pm–midnight
+              "7 10:00-19:00"      // Saturday: 10am–7pm
+            ]
+          }
+        }).then((state) => {
+          // Start the Scheduler
+          BackgroundGeolocation.startSchedule();
+        });
+
+        // Listen for schedule state changes
+        BackgroundGeolocation.onSchedule((state) => {
+          console.log("[onSchedule] enabled?", state.enabled);
+        });
+
+        // Later (e.g., user logout)
+        BackgroundGeolocation.stopSchedule();
+        BackgroundGeolocation.stop(); // if tracking is currently enabled
+
+        // Modify schedule using setConfig
+        BackgroundGeolocation.setConfig({
+          app: {
+            schedule: [
+              "1-7 09:00-10:00",
+              "1-7 11:00-12:00",
+              "1-7 13:00-14:00",
+              "1-7 15:00-16:00",
+              "1-7 17:00-18:00",
+              "2,4,6 19:00-22:00"
+            ]
+          }
+        });
+  example-3:
+    title: Example 3
+    code:
+      ts: |-
+        BackgroundGeolocation.ready({
+          app: {
+            schedule: [
+              "2018-01-01 09:00-17:00"
+            ]
+          }
+        });
+  example-4:
+    title: Example 4
+    code:
+      ts: |-
+        BackgroundGeolocation.ready({
+          app: {
+            schedule: [
+              "2018-01-01-09:00 2019-01-01-17:00" // track for 1 year
+            ]
+          }
+        });

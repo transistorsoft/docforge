@@ -1,0 +1,20 @@
+id: BackgroundGeolocation.getOdometer
+source_file: background-geolocation-types/src/core/api/BackgroundGeolocation.ts
+signature: 'getOdometer(): Promise<number>;'
+description: |-
+  Retrieve the current distance-traveled ("odometer").
+
+  The plugin constantly tracks distance traveled, computing the distance between the current location and last and maintaining the sum.  To fetch the
+  @example example-1
+
+  __ℹ️ See also:__
+   - {@link LocationFilter.odometerAccuracyThreshold}.
+   - {@link resetOdometer} / {@link setOdometer}.
+
+  __⚠️ Warning:__
+  - Odometer calculations are dependent upon the accuracy of received locations.  If location accuracy is poor, this will necessarily introduce error into odometer calculations.
+examples:
+  example-1:
+    title: current **odometer** reading
+    code:
+      ts: let odometer = await BackgroundGeolocation.getOdometer();

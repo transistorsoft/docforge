@@ -1,0 +1,38 @@
+id: NotificationConfig.smallIcon
+source_file: background-geolocation-types/src/core/config/NotificationConfig.ts
+signature: 'smallIcon?: string;'
+description: |-
+  Configure the *small icon* of the persistent notification in the Notification Bar.
+
+  Android requires a persistent notification in the Notification Bar.  This allows you customize that icon.  Defaults to your application icon.
+
+  __⚠️ Warning:__
+  - You must specify the **`type`** (`drawable|mipmap`) of resource you wish to use in the following format: `{type}/icon_name`
+  - Do not append the file-extension (eg: `.png`)
+
+  @example example-1
+
+  __ℹ️ See also:__
+  - {@link largeIcon}
+examples:
+  example-1:
+    title: Example 1
+    code:
+      ts: |-
+        // 1. drawable
+        BackgroundGeolocation.ready({
+          app: {
+            notification: {
+              smallIcon: "drawable/my_custom_notification_small_icon"
+            }
+          }
+        });
+
+        // 2. mipmap
+        BackgroundGeolocation.ready({
+          app: {
+            notification: {
+              smallIcon: "mipmap/my_custom_notification_small_icon"
+            }
+          }
+        });

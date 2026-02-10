@@ -1,0 +1,4 @@
+id: Coords.latitude
+source_file: background-geolocation-types/src/core/data/Location.ts
+signature: 'latitude: number;'
+description: Latitude of the location.

@@ -1,0 +1,6 @@
+id: ConnectivityChangeEvent
+source_file: background-geolocation-types/src/core/events/ConnectivityChangeEvent.ts
+signature: export interface ConnectivityChangeEvent {
+categories:
+- Events
+description: Emitted by {@link BackgroundGeolocation.onConnectivityChange}.

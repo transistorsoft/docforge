@@ -1,0 +1,15 @@
+id: GeoConfig.disableElasticity
+source_file: background-geolocation-types/src/core/config/GeoConfig.ts
+signature: 'disableElasticity?: boolean;'
+description: |-
+  Defaults to **`false`**.  Set **`true`** to disable automatic, speed-based {@link distanceFilter} auto-scaling.  By default, the SDK automatically
+  increases {@link distanceFilter} as speed increases (and decreases it as speed *decreases*) in order to record fewer locations and conserve energy.
+
+  Note the following real example of "elasticity" on highway 101 towards San Francisco as the driver slows down while running into slower
+  traffic &mdash; locations become compressed as {@link distanceFilter} decreases.
+
+  ![distanceFilter at highway speed](https://dl.dropboxusercontent.com/s/uu0hs0sediw26ar/distance-filter-highway.png?dl=1)
+
+  ### ℹ️ See also:
+  - {@link elasticityMultiplier}
+  - {@link distanceFilter}

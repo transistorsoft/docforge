@@ -1,0 +1,21 @@
+id: BackgroundGeolocation.PersistMode
+source_file: background-geolocation-types/src/core/api/BackgroundGeolocation.ts
+signature: 'PersistMode: typeof import(''../../enums/PersistMode'').PersistMode;'
+description: |-
+  __PersistMode__
+  Controls which records the SDK persists to SQLite:
+  locations only, geofences only, both, or none.
+  Used by PersistenceConfig.persistMode.
+
+  @example example-1
+  @readonly
+examples:
+  example-1:
+    title: Example 1
+    code:
+      ts: |-
+        BackgroundGeolocation.ready({
+          persistence: {
+            persistMode: BackgroundGeolocation.PersistMode.All
+          }
+        });

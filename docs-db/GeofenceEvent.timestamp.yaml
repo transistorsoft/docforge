@@ -1,0 +1,4 @@
+id: GeofenceEvent.timestamp
+source_file: background-geolocation-types/src/core/events/GeofenceEvent.ts
+signature: 'timestamp: string;'
+description: Device system time when the OS received the geofence event.

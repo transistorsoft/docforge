@@ -1,0 +1,12 @@
+id: TrackingMode
+source_file: background-geolocation-types/src/enums/TrackingMode.ts
+signature: export const TrackingMode = {
+categories:
+- Config
+description: |-
+  SDK tracking mode (legacy RN values preserved).
+
+  | Value | Name       | Description                   |
+  |------:|------------|-------------------------------|
+  | 0     | Geofences  | Monitor geofences only.       |
+  | 1     | Location   | Monitor location + geofences. |

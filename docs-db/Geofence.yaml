@@ -1,0 +1,247 @@
+id: Geofence
+source_file: background-geolocation-types/src/core/data/Geofence.ts
+signature: export interface Geofence {
+categories:
+- Data
+- Geofencing
+description: |-
+  The Background Geolocation SDK implements the native iOS and Android Geofencing APIs.
+
+  __ℹ️ Note:__
+  - Native iOS & Android API support only *circular* geofences, however the plugin does implement a custom mechanism for handling *Polygon Geofences*; see {@link Geofence.vertices}.
+  - The minimum reliable {@link Geofence.radius} is `200` meters.
+  - The native geofencing API for both iOS and Android *require* the user authorize {@link GeoConfig.locationAuthorizationRequest} **`Always`** &mdash; **`When in Use`** will **not** work.
+
+  __Adding Geofences__
+
+  Adding a single geofence with {@link BackgroundGeolocation.addGeofence}.
+  @example example-1
+
+  Adding multiple geofences with {@link BackgroundGeolocation.addGeofences}.
+  @example example-2
+
+  __ℹ️ Note:__ Adding a geofence having an {@link Geofence.identifier} which already exists within the SDK geofence database will cause the previous record to be destroyed and the new one inserted.
+
+
+  __Listening for Geofence Events__
+
+  Listen to geofence events with {@link BackgroundGeolocation.onGeofence}.
+
+  @example example-3
+
+  __Polygon Geofencing__
+
+  The Background Geolocation SDK supports *Polygon Geofences* (Geofences of any shape).  See API docs {@link Geofence.vertices}.
+  * ℹ️ __*Polygon Geofencing*__ is [sold as a separate add-on](https://shop.transistorsoft.com/products/polygon-geofencing) (fully functional in *DEBUG* builds).
+
+
+  ![](https://dl.dropbox.com/scl/fi/sboshfvar0h41azmb4tyv/polygon-geofencing-parc-outremont-400.png?rlkey=d2s0n3zbzu72e7s2gch9kxd4a&dl=1)
+  ![](https://dl.dropbox.com/scl/fi/xz48myvjnpp8ko0l2tufg/polygon-geofencing-parc-lafontaine-400.png?rlkey=sf20ns959uj0a0fq0atmj55bz&dl=1)
+
+
+  __Infinite Geofencing__
+
+  The Background Geolocation SDK contains unique and powerful Geofencing features that allow you to monitor any number of circular geofences you wish (thousands even),
+  in spite of limits imposed by the native platform APIs (**20 for iOS; 100 for Android**).
+
+  The SDK achieves this by storing your geofences in its database, using a [geospatial query](https://en.wikipedia.org/wiki/Spatial_query) to determine those geofences
+  in proximity ({@link GeoConfig.geofenceProximityRadius}), activating only those geofences closest to the device's current location (according the limit imposed by the corresponding platform).
+
+  - When the device is determined to be moving, the plugin periodically queries for geofences within the {@link GeoConfig.geofenceProximityRadius} (eg. every minute) using the latest recorded location.  This geospatial query is **very fast**, even with tens-of-thousands geofences in the database.
+  - The SDK **enforces** a *minimum* {@link GeoConfig.geofenceProximityRadius} of `1000` meters.
+  - In the following image, the *green* geofences within {@link GeoConfig.geofenceProximityRadius} are *actively* monitored.  The *grey* geofences outside {@link GeoConfig.geofenceProximityRadius} still exist within the SDK's database but are *not* actively being monitored.
+
+  ![](https://dl.dropboxusercontent.com/s/7sggka4vcbrokwt/geofenceProximityRadius_iphone6_spacegrey_portrait.png?dl=1)
+
+
+  __Listening for changes in the actively-monitored set-of-geofences.__
+
+  As the SDK periodically queries for geofences within the {@link GeoConfig.geofenceProximityRadius}, you can listen for changes in the actively-monitored
+  geofences using the event {@link BackgroundGeolocation.onGeofencesChange}.  This event will let you know those geofences which have *begun* to be *actively monitored*
+  ({@link GeofencesChangeEvent.on}) in addition to those which just *ceased* to be actively monitored ({@link GeofencesChangeEvent.off}).
+
+  @example example-4
+
+  __⚠️ Note:__
+  - When **all** geofences have been removed, the {@link GeofencesChangeEvent} will provide empty lists for both {@link GeofencesChangeEvent.on} & {@link GeofencesChangeEvent.off}.
+
+  __Removing Geofences__
+
+  Once a geofence has been inserted into the SDK's database using {@link BackgroundGeolocation.addGeofence} or {@link BackgroundGeolocation.addGeofences}, they will be monitored *forever*
+  (as long as the plugin remains `State.enabled == true`).  If you've configured {@link AppConfig.stopOnTerminate} __`false`__ and {@link AppConfig.startOnBoot} __`true`__, geofences will continue to
+  be monitored even if the application is terminated or device rebooted.
+
+  To cease monitoring a geofence or *geofences*, you must *remove* them from the SDK's database (or call {@link BackgroundGeolocation.stop}).
+
+  - Removing a single geofence by {@link Geofence.identifier} with {@link BackgroundGeolocation.removeGeofence}:
+  @example example-5
+
+  - Removing *all* geofences with {@link BackgroundGeolocation.removeGeofences}:
+  @example example-6
+
+  __Querying Geofences__
+
+  Use the method {@link BackgroundGeolocation.getGeofences} to retrieve the entire Array of {@link Geofence} stored in the SDK's database.
+
+  @example example-7
+
+  __Monitoring *only* geofences__
+
+  The BackgroundGeolocation SDK allows you to optionally monitor *only* geofences without constant location-tracking.  To engage *geofences-only* mode,
+  use the method {@link BackgroundGeolocation.startGeofences} instead of {@link BackgroundGeolocation.start}.
+
+  Use option {@link GeoConfig.geofenceModeHighAccuracy}:true to improve the responsiveness of geofence events.
+
+  @example example-8
+
+  __Toggling between tracking-modes {@link BackgroundGeolocation.start} and {@link BackgroundGeolocation.startGeofences}__
+
+  The SDK can easily be toggled between {@link State.trackingMode} simply by executing the corresponding {@link BackgroundGeolocation.start} or {@link BackgroundGeolocation.startGeofences} methods.
+
+  @example example-9
+examples:
+  example-1:
+    title: Example 1
+    code:
+      ts: |-
+        BackgroundGeolocation.addGeofence({
+          identifier: "Home",
+          radius: 200,
+          latitude: 45.51921926,
+          longitude: -73.61678581,
+          notifyOnEntry: true,
+          notifyOnExit: true,
+          extras: {
+            route_id: 1234
+          }
+        }).then((success) => {
+          console.log("[addGeofence] success");
+        }).catch((error) => {
+          console.log("[addGeofence] FAILURE: ", error);
+        });
+  example-2:
+    title: Example 2
+    code:
+      ts: |-
+        await BackgroundGeolocation.addGeofences([{
+          identifier: "Home",
+          radius: 200,
+          latitude: 45.51921926,
+          longitude: -73.61678581,
+          notifyOnEntry: true,
+        }, {
+          identifier: "Work",
+          radius: 200,
+          latitude: 45.61921927,
+          longitude: -73.71678582,
+          notifyOnEntry: true
+        }]);
+        console.log("[addGeofences] success");
+  example-3:
+    title: Example 3
+    code:
+      ts: |-
+        // Listen for geofence events.
+        BackgroundGeolocation.onGeofence(geofence => {
+          console.log("[geofence] ", geofence.identifier, geofence.action);
+        });
+  example-4:
+    title: Example 4
+    code:
+      ts: |-
+        BackgroundGeolocation.onGeofencesChange((event) => {
+          let on = event.on;     //<-- new geofences activated.
+          let off = event.off; //<-- geofences that were just de-activated.
+
+          // Create map circles
+          on.forEach((geofence) => {
+            createGeofenceMarker(geofence)
+          });
+
+          // Remove map circles
+          off.forEach((identifier) => {
+            removeGeofenceMarker(identifier);
+          });
+        });
+  example-5:
+    title: Example 5
+    code:
+      ts: |-
+        BackgroundGeolocation.removeGeofence("HOME").then(success => {
+          console.log("[removeGeofence] success");
+        })
+  example-6:
+    title: Example 6
+    code:
+      ts: |-
+        BackgroundGeolocation.removeGeofences().then(success => {
+          console.log("[removeGeofences] all geofences have been destroyed");
+        })
+  example-7:
+    title: Example 7
+    code:
+      ts: |-
+        BackgroundGeolocation.getGeofences().then(geofences => {
+          console.log("[getGeofences] ", geofences);
+        })
+  example-8:
+    title: Example 8
+    code:
+      ts: |-
+        BackgroundGeolocation.onGeofence(geofence => {
+          console.log("[geofence] ", geofence);
+        })
+
+        BackgroundGeolocation.ready({
+          http: {
+            url: "http://your.server.com/geofences",
+            autoSync: true,
+          },
+          geolocation: {
+            geofenceModeHighAccuracy: true   // <-- consumes more power; default is false.
+          }
+        }, state => {
+          // engage geofences-only mode:
+          BackgroundGeolocation.startGeofences();
+        })
+  example-9:
+    title: Example 9
+    code:
+      ts: |-
+        // Listen to geofence events
+        BackgroundGeolocation.onGeofence(geofence => {
+          console.log("[geofence] ", geofence);
+          if (geofence.identifier == "DANGER_ZONE") {
+            if (geofence.action == "ENTER") {
+              // Entering the danger-zone, we want to aggressively track location.
+              BackgroundGeolocation.start();
+            } else if (geofence.action == "EXIT") {
+              // Exiting the danger-zone, we resume geofences-only tracking.
+              BackgroundGeolocation.startGeofences();
+            }
+          }
+        })
+
+        // Add a geofence.
+        BackgroundGeolocation.addGeofence({
+          identifier: "DANGER_ZONE",
+          radius: 1000,
+          latitude: 45.51921926,
+          longitude: -73.61678581,
+          notifyOnEntry: true,
+          notifyOnExit: true,
+        })
+
+        // Ready the plugin.
+        BackgroundGeolocation.ready({
+          geolocation: {
+            desiredAccuracy: BackgroundGeolocation.DESIRED_ACCURACY_HIGH,
+            distanceFilter: 10,
+          },
+          http: {
+            url: "http://your.server.com/locations",
+            autoSync: true,
+          }
+        }, state => {
+          BackgroundGeolocation.startGeofences();
+        })

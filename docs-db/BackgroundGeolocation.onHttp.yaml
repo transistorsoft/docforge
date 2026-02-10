@@ -1,0 +1,22 @@
+id: BackgroundGeolocation.onHttp
+source_file: background-geolocation-types/src/core/api/BackgroundGeolocation.ts
+signature: 'onHttp(cb: (event: HttpEvent) => void): Subscription;'
+description: |-
+  Subscribe to HTTP responses from your server {@link HttpConfig.url}.
+
+  @example example-1
+  __ℹ️ See also:__
+   - {@link HttpConfig | HTTP Guide}
+
+  @event http
+examples:
+  example-1:
+    title: Example 1
+    code:
+      ts: |-
+        const subscription = BackgroundGeolocation.onHttp((response) => {
+          let status = response.status;
+          let success = response.success;
+          let responseText = response.responseText;
+          console.log("[onHttp] ", response);
+        });

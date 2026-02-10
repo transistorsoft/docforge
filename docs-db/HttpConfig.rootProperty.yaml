@@ -1,0 +1,49 @@
+id: HttpConfig.rootProperty
+source_file: background-geolocation-types/src/core/config/HttpConfig.ts
+signature: 'rootProperty?: string;'
+description: |-
+  The root property of the JSON object where location data will be placed.
+
+  When set, outgoing HTTP payloads will wrap the serialized location record(s)
+  under the specified key.
+
+  ```ts
+  BackgroundGeolocation.ready({
+    http: {
+      rootProperty: "myData",
+      url: "https://my.server.com",
+    }
+  });
+  ```
+
+  Produces payloads shaped like:
+
+  ```json
+  {
+    "myData": {
+      "coords": {
+        "latitude": 23.232323,
+        "longitude": 37.373737
+      }
+    }
+  }
+  ```
+
+  If you specify `"."` (dot), the SDK places the data **directly in the root**
+  of the JSON body:
+
+  ```json
+  {
+    "coords": {
+      "latitude": 23.232323,
+      "longitude": 37.373737
+    }
+  }
+  ```
+
+  **Note:** See the **HTTP Guide** at {@link HttpConfig} for detailed payload
+  examples and composition rules.
+
+  **See also**
+  - {@link PersistenceConfig.locationTemplate}
+  - {@link PersistenceConfig.geofenceTemplate}

@@ -1,0 +1,4 @@
+id: Location.extras
+source_file: background-geolocation-types/src/core/data/Location.ts
+signature: 'extras?: Record<string, any>;'
+description: Optional arbitrary meta-data attached to this location.

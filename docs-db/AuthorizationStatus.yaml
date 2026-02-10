@@ -1,0 +1,15 @@
+id: AuthorizationStatus
+source_file: background-geolocation-types/src/enums/AuthorizationStatus.ts
+signature: export const AuthorizationStatus = {
+categories:
+- Events
+description: |-
+  iOS/Android location authorization status.
+
+  | Name                | Value | Platform                |
+  |---------------------|:-----:|-------------------------|
+  | NotDetermined       |  0    | iOS only                |
+  | Restricted          |  1    | iOS only                |
+  | Denied              |  2    | iOS & Android           |
+  | Always              |  3    | iOS & Android           |
+  | WhenInUse           |  4    | iOS & Android 10+       |

@@ -1,0 +1,6 @@
+id: TransistorAuthorizationToken.expires
+source_file: background-geolocation-types/src/core/api/TransistorAuthorizationService.ts
+signature: 'expires: number;'
+description: |-
+  Expiry time of the access token (epoch milliseconds).
+  Typically used to drive {@link AuthorizationConfig.expires}.

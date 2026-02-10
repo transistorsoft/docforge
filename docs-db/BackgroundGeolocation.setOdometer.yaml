@@ -1,0 +1,19 @@
+id: BackgroundGeolocation.setOdometer
+source_file: background-geolocation-types/src/core/api/BackgroundGeolocation.ts
+signature: 'setOdometer(value: number): Promise<number>;'
+description: |-
+  Initialize the `odometer` to *any* arbitrary value.
+
+  @example example-1
+
+  __⚠️ Note:__
+  - {@link setOdometer} will internally perform a {@link getCurrentPosition} in order to record the exact location *where* odometer was set.
+examples:
+  example-1:
+    title: Example 1
+    code:
+      ts: |-
+        BackgroundGeolocation.setOdometer(1234.56).then((location) => {
+          // This is the location where odometer was set at.
+          console.log("[setOdometer] success: ", location);
+        });

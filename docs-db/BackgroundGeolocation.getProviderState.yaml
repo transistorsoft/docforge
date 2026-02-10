@@ -1,0 +1,17 @@
+id: BackgroundGeolocation.getProviderState
+source_file: background-geolocation-types/src/core/api/BackgroundGeolocation.ts
+signature: 'getProviderState(): Promise<ProviderChangeEvent>;'
+description: |-
+  Retrieves the current state of location-provider authorization.
+
+  __ℹ️ See also:__
+  - You can also *listen* for changes in location-authorization using the event {@link onProviderChange}.
+
+  @example example-1
+examples:
+  example-1:
+    title: Example 1
+    code:
+      ts: |-
+        let providerState = await BackgroundGeolocation.getProviderState();
+        console.log("- Provider state: ", providerState);

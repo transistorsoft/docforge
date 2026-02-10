@@ -1,0 +1,18 @@
+id: LogLevel
+source_file: background-geolocation-types/src/enums/LogLevel.ts
+signature: export const LogLevel = {
+categories:
+- Config
+description: |-
+  Controls the verbosity of plugin logging.
+
+  | Level   | Value | Description                     |
+  |---------|:-----:|---------------------------------|
+  | Off     |   0   | Disable all logging.            |
+  | Error   |   1   | Log only critical failures.     |
+  | Warning |   2   | Log warnings + errors.          |
+  | Info    |   3   | Operational information.        |
+  | Debug   |   4   | Developer-level debug output.   |
+  | Verbose |   5   | Maximum detail.                 |
+
+  Mirrors native logging constants on iOS & Android.

@@ -1,0 +1,17 @@
+id: Logger.info
+source_file: background-geolocation-types/src/core/api/Logger.ts
+signature: 'info(message: string): void;'
+description: |-
+  Inserts an "info" log message into the SDK's log database
+
+  @example example-1
+  &nbsp;
+  ```
+  E TSLocationManager: [c.t.l.logger.TSLog log]
+  I TSLocationManager:   ℹ️  Something informative
+  ```
+examples:
+  example-1:
+    title: Example 1
+    code:
+      ts: BackgroundGeolocation.logger.info("Something informative");

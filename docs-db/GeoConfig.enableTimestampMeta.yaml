@@ -1,0 +1,34 @@
+id: GeoConfig.enableTimestampMeta
+source_file: background-geolocation-types/src/core/config/GeoConfig.ts
+signature: enableTimestampMeta?:boolean;
+description: |-
+  Enable extra timestamp meta data to be appended to each recorded location, including system-time.
+
+  Some developers have reported GPS {@link Location.timestamp} issues with some Android devices.  This option will append extra meta-data related to the device's system time.
+
+  __Android implementation:__
+
+  ```Java
+  JSONObject timestampMeta = new JSONObject();
+  timestampMeta.put("time", mLocation.getTime());
+  if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+      timestampMeta.put("systemClockElaspsedRealtime", SystemClock.elapsedRealtimeNanos()/1000000);
+      timestampMeta.put("elapsedRealtime", mLocation.getElapsedRealtimeNanos()/1000000);
+  } else {
+      timestampMeta.put("systemTime", System.currentTimeMillis());
+  }
+  ```
+
+  __iOS Implementation:__
+
+  ```Java
+   long long systemTime = (long long)([[NSDate date] timeIntervalSince1970] * 1000.0);
+   long long locationTime = (long long)([_location.timestamp timeIntervalSince1970] * 1000.0);
+   long long uptime = (long long) [self.class uptime] * 1000;
+
+   return @{
+       @"time": @(locationTime),
+       @"systemTime": @(systemTime),
+       @"systemClockElapsedRealtime": @(uptime)
+   };
+  ```

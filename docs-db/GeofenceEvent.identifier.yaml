@@ -1,0 +1,4 @@
+id: GeofenceEvent.identifier
+source_file: background-geolocation-types/src/core/events/GeofenceEvent.ts
+signature: 'identifier: string;'
+description: Identifier of the geofence which fired.

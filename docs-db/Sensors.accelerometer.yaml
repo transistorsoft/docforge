@@ -1,0 +1,4 @@
+id: Sensors.accelerometer
+source_file: background-geolocation-types/src/core/data/Sensors.ts
+signature: 'accelerometer: boolean;'
+description: '`true` when the device has an accelerometer.'

@@ -1,0 +1,4 @@
+id: HttpEvent.status
+source_file: background-geolocation-types/src/core/events/HttpEvent.ts
+signature: 'status: number;'
+description: HTTP status code (e.g., 200, 500, 404).

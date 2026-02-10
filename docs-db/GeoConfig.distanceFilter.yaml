@@ -1,0 +1,51 @@
+id: GeoConfig.distanceFilter
+source_file: background-geolocation-types/src/core/config/GeoConfig.ts
+signature: 'distanceFilter?: number;'
+description: |-
+  The minimum distance (measured in meters) a device must move horizontally before an update event is generated.
+
+  However, by default, **`distanceFilter`** is elastically auto-calculated by the plugin:  When speed increases, **`distanceFilter`** increases;  when speed decreases, so too does **`distanceFilter`**.
+
+
+  ### ℹ️ Note:
+  - To disable this behavior, configure {@link disableElasticity} __`true`__.
+  - To control the scale of the automatic `distanceFilter` calculation, see {{@link elasticityMultiplier}
+
+  `distanceFilter` is auto-scaled by rounding speed to the nearest `5 m/s` and adding `distanceFilter` meters for each `5 m/s` increment.
+
+  For example, at biking speed of 7.7 m/s with a configured `distanceFilter: 30`:
+  @example example-1
+
+  At highway speed of `27 m/s` with a configured `distanceFilter: 50`:
+  @example example-2
+
+  Note the following real example of "elasticity" on highway 101 towards San Francisco as the driver slows down while running into
+  slower traffic &mdash; locations become compressed as `distanceFilter` decreases.
+
+  ![distanceFilter at highway speed](https://dl.dropboxusercontent.com/s/uu0hs0sediw26ar/distance-filter-highway.png?dl=1)
+
+  Compare now background-geolocation in the scope of a city.  In this image, the left-hand track is from a cab-ride, while the right-hand
+  track is walking speed.
+
+  ![distanceFilter at city scale](https://dl.dropboxusercontent.com/s/yx8uv2zsimlogsp/distance-filter-city.png?dl=1)
+examples:
+  example-1:
+    title: Example 1
+    code:
+      ts: |2-
+          rounded_speed = round(7.7, 5)
+          => 10
+          multiplier = rounded_speed / 5
+          => 10 / 5 = 2
+          adjusted_distance_filter = multiplier * distanceFilter
+          => 2 * 30 = 60 meters
+  example-2:
+    title: Example 2
+    code:
+      ts: |2-
+          rounded_speed = round(27, 5)
+          => 30
+          multiplier = rounded_speed / 5
+          => 30 / 5 = 6
+          adjusted_distance_filter = multiplier * distanceFilter * elasticityMultipiler
+          => 6 * 50 = 300 meters

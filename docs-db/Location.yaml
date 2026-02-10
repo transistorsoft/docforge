@@ -1,0 +1,87 @@
+id: Location
+source_file: background-geolocation-types/src/core/data/Location.ts
+signature: export interface Location {
+categories:
+- Data
+description: |-
+  A `Location` object represents a geographic location captured by the device's native location API.
+
+  - `CLLocationManager` delivers instance of `CLLocation` on iOS
+  - `FusedLocationProviderClient` deliver instance of `android.location.Location` on Android
+
+  __Javascript Callback Schema__
+
+  @example example-1
+
+  __HTTP POST Schema__
+
+  The location-data schema POSTed to your server takes the following form:
+  @example example-2
+examples:
+  example-1:
+    title: Example 1
+    code:
+      ts: |-
+        {
+           "timestamp":     [Date],     // <-- Javascript Date instance
+           "event":         [String],   // <-- motionchange|geofence|heartbeat
+           "is_moving":     [Boolean],  // <-- The motion-state when location was recorded.
+           "uuid":          [String],   // <-- Universally unique identifier
+           "age":           [Integer],  // <-- Age of the location in milliseconds
+           "coords": {
+               "latitude":  [Double],
+               "longitude": [Double],
+               "accuracy":  [Double],
+               "speed":     [Double],
+               "heading":   [Double],
+               "altitude":  [Double]
+               "ellipsoidal_altitude":  [Double]
+           },
+           "activity": {
+               "type": [still|on_foot|walking|running|in_vehicle|on_bicycle],
+               "confidence": [0-100%]
+           },
+           "battery": {
+               "level": [Double],
+               "is_charging": [Boolean]
+           },
+           "odometer": [Double/meters]
+        }
+  example-2:
+    title: Example 2
+    code:
+      ts: |-
+        {
+            "location": {
+                "coords": {
+                    "latitude":   [Double],
+                    "longitude":  [Double],
+                    "accuracy":   [Double],
+                    "speed":      [Double],
+                    "heading":    [Double],
+                    "altitude":   [Double],
+                    "ellipsoidal_altitude": [Double]
+                },
+                "extras": {   // <-- optional meta-data
+                    "foo": "bar"
+                },
+                "activity": {
+                    "type": [still|on_foot|walking|running|in_vehicle|on_bicycle|unknown],
+                    "confidence": [0-100%]
+                },
+                "geofence": {  // <-- Present only if a geofence was triggered at this location
+                    "identifier": [String],
+                    "action": [String ENTER|EXIT]
+                },
+                "battery": {
+                    "level": [Double],
+                    "is_charging": [Boolean]
+                },
+                "timestamp": [ISO-8601 UTC], // eg:  "2015-05-05T04:31:54.123Z"
+                "age":       [Integer],      // <-- Age of the location in milliseconds
+                "uuid":      [String],       // <-- Universally unique identifier
+                "event"      [String],       // <-- motionchange|geofence|heartbeat
+                "is_moving": [Boolean],      // <-- The motion-state when recorded.
+                "odometer": [Double/meters]
+            }
+         }

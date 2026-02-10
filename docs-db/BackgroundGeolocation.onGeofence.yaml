@@ -1,0 +1,22 @@
+id: BackgroundGeolocation.onGeofence
+source_file: background-geolocation-types/src/core/api/BackgroundGeolocation.ts
+signature: 'onGeofence(cb: (event: GeofenceEvent) => void): Subscription;'
+description: |-
+  Subscribe to Geofence transition events.
+
+  Your supplied `callback` will be called when any monitored geofence crossing occurs.
+
+  @example example-1
+
+  __ℹ️ See also:
+  - 📘 {@link Geofence | Geofencing Guide}
+
+  @event geofence
+examples:
+  example-1:
+    title: Example 1
+    code:
+      ts: |-
+        const subscription = BackgroundGeolocation.onGeofence((event) => {
+          console.log("[onGeofence] ", event);
+        });

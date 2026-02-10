@@ -1,0 +1,6 @@
+id: Sensors
+source_file: background-geolocation-types/src/core/data/Sensors.ts
+signature: export interface Sensors {
+categories:
+- Data
+description: Detected device sensors related to motion-detection.

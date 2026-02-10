@@ -1,0 +1,132 @@
+id: GeoConfig.locationAuthorizationRequest
+source_file: background-geolocation-types/src/core/config/GeoConfig.ts
+signature: 'locationAuthorizationRequest?: ''Always'' | ''WhenInUse'' | ''Any'';'
+description: |-
+  Defines the *desired* location-authorization level your app expects from the user:
+
+  - **`"Always"`**
+  - **`"WhenInUse"`**
+  - **`"Any"`**
+
+  Defaults to **`"Always"`**.
+
+  Setting `locationAuthorizationRequest` tells the SDK *what authorization level
+  your app expects*, so it can guide the user and present helpful upgrade dialogs
+  when needed. If you do **not care** which authorization is granted, configure
+  **`"Any"`**.
+
+  If you request **`"Always"`** but the user grants only **When-In-Use**, the SDK
+  will display {@link locationAuthorizationAlert} unless disabled via
+  {@link disableLocationAuthorizationAlert}.
+
+
+  **iOS**
+
+  iOS 13 introduced major changes to the authorization workflow.
+  Apps no longer receive **Always Allow** on the initial dialog.
+
+  After a user first grants **While Using the App**, iOS may show a second,
+  system-managed **upgrade prompt**, asking if they’d like to enable:
+
+  - **Keep Only While Using**
+  - **Change to Always Allow**
+
+  **1. When `locationAuthorizationRequest: "Always"`**
+
+  The user will first see the **While Using App** dialog, followed immediately by
+  the upgrade prompt asking for **Always Allow**:
+
+  ![](https://dl.dropbox.com/s/0alq10i4pcm2o9q/ios-when-in-use-to-always-CHANGELOG.gif?dl=1)
+
+  If the user *denies* Always, the SDK displays
+  {@link locationAuthorizationAlert} (unless disabled).
+
+  ![](https://dl.dropbox.com/s/wk66ave2mzq6m6a/ios-locationAuthorizationAlert.jpg?dl=1)
+
+  **2. When `locationAuthorizationRequest: "WhenInUse"`**
+
+  Only the initial dialog appears:
+
+  ![](https://dl.dropbox.com/s/n38qehw3cjhzngy/ios13-location-authorization.png?dl=1)
+
+  If you later upgrade the config to `"Always"`, the upgrade prompt
+  appears immediately:
+
+  ![](https://dl.dropbox.com/s/5syokc8rtrc9q35/ios13-location-authorization-upgrade-always.png?dl=1)
+
+  **3. When `locationAuthorizationRequest: "Any"`**
+
+  The SDK requests **Always** internally, but accepts either result.
+  iOS may spontaneously show the upgrade dialog later:
+
+  ![](https://dl.dropbox.com/s/5syokc8rtrc9q35/ios13-location-authorization-upgrade-always.png?dl=1)
+
+  @example example-1
+
+  **Android**
+
+  **Android 11+ (targetSdkVersion ≥ 30)**
+
+  Android 11 removes **Allow all the time** from the initial dialog.
+  Instead, apps must present a custom rationale UI before navigating the user
+  to the system **Location Permissions** screen.
+
+  The SDK automatically presents {@link AppConfig.backgroundPermissionRationale}
+  when configured.
+
+  - The dialog shows **only once**, unless the user resets permissions.
+
+  ![](https://dl.dropbox.com/s/343nbrzpaavfser/android11-location-authorization-rn.gif?dl=1)
+
+  ```ts
+  BackgroundGeolocation.ready({
+    geolocation: { locationAuthorizationRequest: "Always" },
+    app: {
+      backgroundPermissionRationale: {
+        title: "Allow access to this device's location in the background?",
+        message: "To track your trips, please enable 'Allow all the time' location permission.",
+        positiveAction: "Change to Allow all the time",
+        negativeAction: "Cancel"
+      }
+    }
+  });
+  ```
+
+  **1. When `locationAuthorizationRequest: "Always"`**
+
+  After granting **While Using**, Android immediately displays your configured
+  rationale dialog:
+
+  ![](https://dl.dropbox.com/s/343nbrzpaavfser/android11-location-authorization-rn.gif?dl=1)
+
+  **2. When `locationAuthorizationRequest: "WhenInUse"`**
+
+  Only the initial system dialog appears:
+
+  ![](https://dl.dropbox.com/s/ymybwme7fvda0ii/android11-location-when-in-use-system-dialog.png?dl=1)
+
+  Upgrading later to `"Always"` triggers the rationale dialog:
+
+  ![](https://dl.dropbox.com/s/4fq4erz2lpqz00m/android11-location-permission-rationale-dialog.png?dl=1)
+
+  **3. When `locationAuthorizationRequest: "Any"`**
+
+  Treated the same as `"Always"`.
+examples:
+  example-1:
+    title: Example 1
+    code:
+      ts: |-
+        // Start with When-In-Use
+        BackgroundGeolocation.ready({
+          geolocation: { locationAuthorizationRequest: "WhenInUse" }
+        });
+
+        async function onClickStartTracking() {
+          await BackgroundGeolocation.start();
+
+          // Later — you may upgrade to Always at any time.
+          BackgroundGeolocation.setConfig({
+            geolocation: { locationAuthorizationRequest: "Always" }
+          });
+        }

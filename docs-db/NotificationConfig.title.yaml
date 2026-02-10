@@ -1,0 +1,7 @@
+id: NotificationConfig.title
+source_file: background-geolocation-types/src/core/config/NotificationConfig.ts
+signature: 'title?: string;'
+description: |-
+  Configure the *title* of the persistent notification in the Notification Bar.
+
+  Defaults to the application name from `AndroidManifest`.  Android requires a persistent notification for foreground-services.  This will configure the **title** of that notification.

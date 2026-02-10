@@ -1,0 +1,30 @@
+id: DeviceSettings
+source_file: background-geolocation-types/src/core/api/DeviceSettings.ts
+signature: export interface DeviceSettings {
+categories:
+- Device
+description: |-
+  Device Settings API (types-only).
+
+  Provides an API to show Android & vendor-specific Battery / Power Management settings screens that can
+  affect performance of the Background Geolocation SDK on various devices.
+
+  See: https://dontkillmyapp.com/
+
+  @example example-1
+examples:
+  example-1:
+    title: Example 1
+    code:
+      ts: |-
+        // Is Android device ignoring battery optimizations?
+        const isIgnoring = await BackgroundGeolocation.deviceSettings.isIgnoringBatteryOptimizations();
+        if (!isIgnoring) {
+          const req = await BackgroundGeolocation.deviceSettings.showIgnoreBatteryOptimizations();
+          if (!req.seen) {
+            const confirmed = await showMyConfirmDialog({ title: 'Settings request', text: 'Please disable battery optimizations' });
+            if (confirmed) {
+              await BackgroundGeolocation.deviceSettings.show(req);
+            }
+          }
+        }
