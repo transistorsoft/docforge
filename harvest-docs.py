@@ -11,7 +11,9 @@ import re
 import sys
 
 # Constants
-TS_ROOT = Path("background-geolocation-types/src")
+DEFAULT_TS_ROOT = Path("background-geolocation-types/src")
+# NOTE: This is overridden at runtime by the --source CLI switch.
+TS_ROOT: Path = DEFAULT_TS_ROOT
 
 # Some internal/hidden interfaces are used only as mixins and are re-exported
 # via the public `BackgroundGeolocation` interface.  We still want to harvest
@@ -958,6 +960,11 @@ def main():
         help="Insert/update <!-- doc-id: ... --> at the top of each harvestable JSDoc block (edits TS sources in-place)",
     )
     parser.add_argument(
+        "--source",
+        default=str(DEFAULT_TS_ROOT),
+        help="Path to the TypeScript source root to harvest (default: background-geolocation-types/src)",
+    )
+    parser.add_argument(
         "--out-dir",
         default="docs-db",
         help="Output directory for --seed (default: docs-db)",
@@ -980,6 +987,10 @@ def main():
         help="When seeding, delete YAML files in --out-dir that were not generated in this run",
     )
     args = parser.parse_args()
+
+    # Allow overriding the hard-coded TS root.
+    global TS_ROOT
+    TS_ROOT = Path(args.source).expanduser()
     
     if not TS_ROOT.exists():
         raise RuntimeError(f"TS root not found: {TS_ROOT}")
