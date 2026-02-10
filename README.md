@@ -12,8 +12,6 @@ This repo contains two scripts:
 - `harvest.py` — scans TypeScript, extracts/normalizes docs, and writes `docs-db/*.yaml`.
 - `apply-docs.py` — scans source files (eg. iOS SDK headers), finds `doc-id` markers, and rewrites the surrounding docblocks with the harvested content.
 
----
-
 ## Requirements
 
 - Python 3.10+
@@ -44,8 +42,6 @@ When adding a new dependency to this project, use:
 ```bash
 uv add <package>
 ```
-
----
 
 ## The docs database
 
@@ -80,7 +76,6 @@ Important conventions:
 - `examples.<key>.code` is a map of **language → snippet** (`ts`, `objc`, `kotlin`, …).
 - When applying, Docforge inserts the chosen language snippet **at the placeholder location**.
 
----
 
 ## Harvesting docs (TypeScript → YAML)
 
@@ -141,8 +136,6 @@ uv run harvest.py --dump --source /path/to/your/types/src core/api/BackgroundGeo
 # Dump extracted description/examples summary
 uv run harvest.py --dump-extracted core/api/BackgroundGeolocation.ts --max-blocks 3
 ```
-
----
 
 ## Applying docs (YAML → Objective‑C headers)
 
@@ -232,8 +225,6 @@ If the example exists, but not for the requested language:
 
 This ensures consistent alignment and clean diffs, even if the original header used a compact `/**\n* ...` style.
 
----
-
 ## Typical workflow
 
 1. **Harvest** from TypeScript:
@@ -258,8 +249,6 @@ This ensures consistent alignment and clean diffs, even if the original header u
    uv run apply-docs.py --docs-db docs-db --root ../ios-sdk --ext .h --lang objc --check
    ```
 
----
-
 ## Tips
 
 - If you’re missing doc-ids in a destination source tree, add markers like:
@@ -275,7 +264,6 @@ This ensures consistent alignment and clean diffs, even if the original header u
 
 - Keep `docs-db/` in version control — it’s the canonical “single source of truth” that can be applied to multiple SDKs.
 
----
 
 ## License
 
