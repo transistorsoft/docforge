@@ -1,6 +1,6 @@
 # Docforge — harvest once, apply everywhere
 
-Docforge is a small tooling pair that lets you:
+DocForge is a small tooling pair that lets you:
 
 1. **Harvest** JSDoc from a TypeScript API surface into a portable **YAML docs database** (`docs-db/*.yaml`).
 2. **Apply** those harvested docs into other source trees (currently focused on **Objective‑C `.h` headers**) by looking for `<!-- doc-id: ... -->` markers.
