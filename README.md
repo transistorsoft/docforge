@@ -1,3 +1,5 @@
+![Transistor Software](./transistor-logo.svg)
+
 # Docforge — harvest once, apply everywhere
 
 DocForge is a small tooling pair that lets you:
